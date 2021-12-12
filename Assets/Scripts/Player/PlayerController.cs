@@ -28,7 +28,7 @@ namespace Platformer2D
         public void Move(float step)
         {
             var position = _playerView.transform.position;
-            position.x += step * 0.01f;
+            position.x += step * 3f * Time.deltaTime;
             _playerView.SetPosition(position);
 
             if (step > 0)
