@@ -15,5 +15,24 @@ namespace Platformer2D
         public SpriteRenderer SpriteRenderer => _spriteRenderer;
         public Collider2D Collider => _collider;
         public Rigidbody2D Rigidbody => _rigidbody;
+
+        public void SetPosition(Vector3 position)
+        {
+            transform.position = position;
+        }
+
+        public void SetRightDirection()
+        {
+            var scale = transform.localScale;
+            scale.x = 1;
+            transform.localScale = scale;
+        }
+
+        public void SetLeftDirection()
+        {
+            var scale = transform.localScale;
+            scale.x = -1;
+            transform.localScale = scale;
+        }
     }
 }

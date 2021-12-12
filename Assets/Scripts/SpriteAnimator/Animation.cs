@@ -12,10 +12,10 @@ namespace Platformer2D
         public float Counter = 0;
         public bool Sleep;
 
-        public void Update()
+        public void PlayAnimation(float deltatime)
         {
             if (Sleep) return;
-            Counter += Time.deltaTime * Speed;
+            Counter += deltatime * Speed;
             if (Loop)
             {
                 while (Counter > Sprites.Count)

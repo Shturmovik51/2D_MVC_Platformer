@@ -35,7 +35,7 @@ namespace Platformer2D
                 if (animation.AnimationType != track)
                 {
                     animation.AnimationType = track;
-                    animation.Sprites = _config.SpritesSet.Find(sequence => sequence.Track == track).Sprites;
+                    animation.Sprites = _config.SpritesSet.Find(spriteSet => spriteSet.Track == track).Sprites;
                     animation.Counter = 0;
                 }
             }
@@ -44,7 +44,7 @@ namespace Platformer2D
                 _activeAnimations.Add(spriteRenderer, new Animation()
                 {
                     AnimationType = track,
-                    Sprites = _config.SpritesSet.Find(sequence => sequence.Track == track).Sprites,
+                    Sprites = _config.SpritesSet.Find(spriteSet => spriteSet.Track == track).Sprites,
                     Loop = loop,
                     Speed = speed
                 });
@@ -63,7 +63,7 @@ namespace Platformer2D
         {
             foreach (var animation in _activeAnimations)
             {
-                animation.Value.Update();
+                animation.Value.PlayAnimation(deltatime);
                 animation.Key.sprite = animation.Value.Sprites[(int)animation.Value.Counter];
             }
         }       
