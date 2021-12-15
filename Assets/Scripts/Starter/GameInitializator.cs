@@ -5,19 +5,19 @@ namespace Platformer2D
 {
     public sealed class GameInitializator
     {
-        public GameInitializator(ControllersManager controllersManager, GameData gameData, ObjectView playerView)
+        public GameInitializator(ControllersManager controllersManager, GameData gameData, ObjectView playerView, 
+                    float animationSpeed)
         {
             var camera = Camera.main;
             var inputController = new InputController(gameData);
-
-            var spriteAnimatorController = new SpriteAnimatorController(gameData.PlayerAnimations);
-            spriteAnimatorController.StartAnimation(playerView.SpriteRenderer, AnimationType.Run, true, 15);
-
-            var playerController = new PlayerController(playerView, inputController);
+            var playerAnimationsFactory = new PlayerAnimationsFactory(gameData, animationSpeed);
+            var animatorController = new SpriteAnimatorController(playerAnimationsFactory);
             var cameraPositionController = new CameraPositionController(camera, playerView.transform);
+            var stateController = new StateController(animatorController);
+            var playerModel = new PlayerModel();
+            var playerController = new PlayerController(playerView, inputController, stateController, playerModel);
 
-
-            controllersManager.Add(spriteAnimatorController);
+            controllersManager.Add(animatorController);
             controllersManager.Add(inputController);
             controllersManager.Add(playerController);
             controllersManager.Add(cameraPositionController);

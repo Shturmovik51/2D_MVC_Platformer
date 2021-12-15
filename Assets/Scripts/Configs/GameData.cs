@@ -7,10 +7,10 @@ namespace Platformer2D
     [CreateAssetMenu(fileName = "GameData", menuName = "Configs / GameData")]
     public class GameData : ScriptableObject
     {
-        [SerializeField] private SpriteAnimationsConfig _playerAnimations;
+        [SerializeField] private SpriteAnimationsConfig _playerAnimationsConfig;
         [SerializeField] private InputKeysConfig _userInput;
 
-        public SpriteAnimationsConfig PlayerAnimations => _playerAnimations;
+        public SpriteAnimationsConfig PlayerAnimationsConfig => _playerAnimationsConfig;
         public InputKeysConfig UserInput => _userInput;
     }
 }

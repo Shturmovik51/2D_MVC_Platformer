@@ -5,28 +5,48 @@ namespace Platformer2D
 {
     public class Animation
     {
-        public AnimationType AnimationType;
-        public List<Sprite> Sprites;
-        public bool Loop = false;
-        public float Speed = 10;
-        public float Counter = 0;
-        public bool Sleep;
+        private AnimationType _animationType;
+        private List<Sprite> _sprites;
+        private bool _loop = false;
+        private float _speed = 10;
+        private bool _sleep;  
+        private float _spriteCounter = 0;
+
+        public List<Sprite> Sprites => _sprites;
+        public float SpriteCounter => _spriteCounter;
+        public AnimationType AnimationType => _animationType;
+
+        public Animation(AnimationType animationType, List<Sprite> sprites, bool loop, float speed)
+        {
+            _animationType = animationType;
+            _sprites = sprites;
+            _loop = loop;
+            _speed = speed;
+        }
+
+        public Animation ResetAnimation()
+        {
+            _spriteCounter = 0;
+            return this;
+        }
 
         public void PlayAnimation(float deltatime)
         {
-            if (Sleep) return;
-            Counter += deltatime * Speed;
-            if (Loop)
+            if (_sleep) return;
+            
+            _spriteCounter += deltatime * _speed;
+
+            if (_loop)
             {
-                while (Counter > Sprites.Count)
+                while (_spriteCounter > _sprites.Count)
                 {
-                    Counter -= Sprites.Count;
+                    _spriteCounter -= _sprites.Count;
                 }
             }
-            else if (Counter > Sprites.Count)
+            else if (_spriteCounter > _sprites.Count)
             {
-                Counter = Sprites.Count - 1;
-                Sleep = true;
+                _spriteCounter = _sprites.Count - 1;
+                _sleep = true;
             }
         }
     }

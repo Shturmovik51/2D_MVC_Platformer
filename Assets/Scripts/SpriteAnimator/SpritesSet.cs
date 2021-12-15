@@ -7,7 +7,7 @@ namespace Platformer2D
     [System.Serializable]
     public class SpritesSet
     {
-        [SerializeField] private AnimationType _track;
+        [SerializeField] private AnimationType _type;
         [SerializeField] private List<Sprite> _sprites;
 
         public SpritesSet()
@@ -15,7 +15,7 @@ namespace Platformer2D
             _sprites = new List<Sprite>();
         }
 
-        public AnimationType Track => _track;
+        public AnimationType Type => _type;
         public List<Sprite> Sprites => _sprites;
     }
 }

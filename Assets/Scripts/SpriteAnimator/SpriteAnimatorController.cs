@@ -4,19 +4,17 @@ using UnityEngine;
 
 namespace Platformer2D
 {
-    public class SpriteAnimatorController : IUpdatable, IInitializable, ICleanable, IController
+    public class SpriteAnimatorController : IUpdatable, ICleanable, IController
     { 
-        private SpriteAnimationsConfig _config;
-        private Dictionary<SpriteRenderer, Animation> _activeAnimations = new Dictionary<SpriteRenderer, Animation>();
+        private List<Animation> _allAnimations;
+        private Dictionary<SpriteRenderer, Animation> _activeAnimations;
 
-        public SpriteAnimatorController(SpriteAnimationsConfig config)
+        public SpriteAnimatorController(PlayerAnimationsFactory playerAnimationsFactory)
         {
-            _config = config;
-        }
+            _allAnimations = new List<Animation>();
+            _activeAnimations = new Dictionary<SpriteRenderer, Animation>();
 
-        public void Initialization()
-        {
-
+            _allAnimations.AddRange(playerAnimationsFactory.GetPlayerAnimations());
         }
 
         public void CleanUp()
@@ -24,31 +22,20 @@ namespace Platformer2D
             _activeAnimations.Clear();
         }
 
-        public void StartAnimation(SpriteRenderer spriteRenderer, AnimationType track, bool loop, float speed)
+        public void StartAnimation(SpriteRenderer spriteRenderer, AnimationType type)
         {
-            if (_activeAnimations.TryGetValue(spriteRenderer, out var animation))
+            if(_activeAnimations.TryGetValue(spriteRenderer, out var animation))
             {
-                animation.Loop = loop;
-                animation.Speed = speed;
-                animation.Sleep = false;
-
-                if (animation.AnimationType != track)
-                {
-                    animation.AnimationType = track;
-                    animation.Sprites = _config.SpritesSet.Find(spriteSet => spriteSet.Track == track).Sprites;
-                    animation.Counter = 0;
-                }
+                animation.ResetAnimation();
             }
             else
             {
-                _activeAnimations.Add(spriteRenderer, new Animation()
-                {
-                    AnimationType = track,
-                    Sprites = _config.SpritesSet.Find(spriteSet => spriteSet.Track == track).Sprites,
-                    Loop = loop,
-                    Speed = speed
-                });
+                animation = _allAnimations.Find(animation => animation.AnimationType == type);
+                animation.ResetAnimation();
+                _activeAnimations.Add(spriteRenderer, animation);
             }
+
+
         }
 
         public void StopAnimation(SpriteRenderer sprite)
@@ -64,7 +51,7 @@ namespace Platformer2D
             foreach (var animation in _activeAnimations)
             {
                 animation.Value.PlayAnimation(deltatime);
-                animation.Key.sprite = animation.Value.Sprites[(int)animation.Value.Counter];
+                animation.Key.sprite = animation.Value.Sprites[(int)animation.Value.SpriteCounter];
             }
         }       
     }

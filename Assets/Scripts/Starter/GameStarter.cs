@@ -5,6 +5,7 @@ namespace Platformer2D
     public class GameStarter : MonoBehaviour
     {
         [SerializeField] private ObjectView _playerView;
+        [SerializeField] private float _animationSpeed;
 
         private ControllersManager _controllersManager;
         private GameData _gameData;
@@ -14,7 +15,7 @@ namespace Platformer2D
             _controllersManager = new ControllersManager();
             _gameData = (GameData) Resources.Load("GameData");
 
-            new GameInitializator(_controllersManager, _gameData, _playerView);
+            new GameInitializator(_controllersManager, _gameData, _playerView, _animationSpeed);
 
             _controllersManager.Initialization();
         }
