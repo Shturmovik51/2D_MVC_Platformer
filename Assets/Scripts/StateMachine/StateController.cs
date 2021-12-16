@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace Platformer2D
 {
    public class StateController : IFixedUpdatable, IController
@@ -68,7 +64,6 @@ namespace Platformer2D
             playerModel.IsJump = state.IsJump;
             playerModel.IsRun = state.IsRun;
             playerModel.IsStay = state.IsStay;
-            playerModel.IsGrounded = state.IsGrounded;
         }
     }
 }

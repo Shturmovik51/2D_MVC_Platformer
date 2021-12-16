@@ -50,9 +50,8 @@ namespace Platformer2D
         private void Move(float step)
         {
             DirectionController(step);
-            GroundDetector();
 
-            if (step == 0 && !_playerModel.IsStay &&/* _playerModel.IsGrounded &&*/ _playerView.Rigidbody.velocity.y == Mathf.Round(0))
+            if (step == Mathf.Round(0) && !_playerModel.IsStay && _playerView.Rigidbody.velocity.y == Mathf.Round(0))
             {
                 _stateController.SetIdleState(_playerView, _playerModel);
 
@@ -61,7 +60,7 @@ namespace Platformer2D
                 _playerView.Rigidbody.velocity = velocity;
             }
 
-            if (step != 0 && !_playerModel.IsRun && /*_playerModel.IsGrounded &&*/ _playerView.Rigidbody.velocity.y == Mathf.Round(0))
+            if (step != 0 && !_playerModel.IsRun && _playerView.Rigidbody.velocity.y == Mathf.Round(0))
             {
                 _stateController.SetRunState(_playerView, _playerModel);                
             }
@@ -69,7 +68,7 @@ namespace Platformer2D
 
         private void Jump()
         {
-            if (!_playerModel.IsGrounded)
+            if (!_playerView.IsGrounded())
                 return;
 
             if (!_playerModel.IsJump)
@@ -79,7 +78,6 @@ namespace Platformer2D
 
             _playerView.Rigidbody.AddForce(400f * Time.fixedDeltaTime * Vector2.up, ForceMode2D.Impulse);            
         }
-
 
         private void DirectionController(float step)
         {
@@ -94,12 +92,5 @@ namespace Platformer2D
                 _playerModel.IsRightDirection = false;
             }
         }
-
-        private void GroundDetector()
-        {
-            _playerModel.IsGrounded = _playerView.IsGrounded();
-        }
-
-
     }
 }

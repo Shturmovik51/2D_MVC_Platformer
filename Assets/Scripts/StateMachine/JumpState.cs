@@ -2,7 +2,6 @@ namespace Platformer2D
 {
     public class JumpState : IState
     {
-        public bool IsGrounded { get; }
         public bool IsRun { get; }
         public bool IsJump { get; }
         public bool IsStay { get; }
@@ -12,7 +11,6 @@ namespace Platformer2D
             IsRun = false;
             IsJump = true;
             IsStay = false;
-            IsGrounded = false;
         }
 
         public void EnterState(ObjectView playerView, SpriteAnimatorController animatorController)

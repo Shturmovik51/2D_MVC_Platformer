@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a203611bc38c6b478a6aed4a406d031, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  _playerAnimations: {fileID: 11400000, guid: f0cacd881b3c4994b957ac7e30bc288c, type: 2}
+  _playerAnimationsConfig: {fileID: 11400000, guid: f0cacd881b3c4994b957ac7e30bc288c, type: 2}
   _userInput: {fileID: 11400000, guid: b0a7ab72630137c4f890d4cd8967bf2e, type: 2}

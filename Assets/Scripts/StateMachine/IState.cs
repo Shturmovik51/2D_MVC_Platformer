@@ -2,7 +2,6 @@ namespace Platformer2D
 {
     public interface IState
     {
-        public bool IsGrounded { get; }
         public bool IsRun { get; }
         public bool IsJump { get; }
         public bool IsStay { get; }

@@ -4,7 +4,6 @@ namespace Platformer2D
     {
         public float MoveSpeed { get; }
 
-        public bool IsGrounded;
         public bool IsRun;
         public bool IsJump;
         public bool IsStay;
