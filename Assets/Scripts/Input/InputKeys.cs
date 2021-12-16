@@ -19,5 +19,10 @@ namespace Platformer2D
         {
             if (Input.GetKeyDown(_inputKeysData.Load)) action?.Invoke();
         }
+
+        public void GetKeyJumpDown(InputKeysConfig _inputKeysData, Action action)
+        {
+            if (Input.GetKeyDown(_inputKeysData.Jump)) action?.Invoke();
+        }
     }
 }

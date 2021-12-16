@@ -10,11 +10,19 @@ namespace Platformer2D
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private Collider2D _collider;
         [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private Transform _groundDetector;
+        [SerializeField] private LayerMask _groundMask;
+        private float _groundDetectorRadius = 0.2f;
 
         public Transform Transform => _transform;
         public SpriteRenderer SpriteRenderer => _spriteRenderer;
         public Collider2D Collider => _collider;
         public Rigidbody2D Rigidbody => _rigidbody;
+
+        public bool IsGrounded()
+        {
+            return Physics2D.OverlapCircle(_groundDetector.position, _groundDetectorRadius, _groundMask);
+        }
 
         public void SetPosition(Vector3 position)
         {

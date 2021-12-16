@@ -2,12 +2,14 @@ using UnityEngine;
 
 namespace Platformer2D
 {
-    public class PlayerController : IInitializable, ICleanable, IController
+    public class PlayerController : IInitializable, ICleanable, IFixedUpdatable, IController
     {
         private ObjectView _playerView;
         private InputController _inputController;
         private StateController _stateController;
         private PlayerModel _playerModel;
+        private Vector3 _rightDir = new Vector3(1, 1, 1);
+        private Vector3 _leftDir = new Vector3(-1, 1, 1);
 
         public PlayerController(ObjectView playerView, InputController inputController, StateController stateController, 
                     PlayerModel playerModel)
@@ -21,41 +23,83 @@ namespace Platformer2D
         public void Initialization()
         {
             _inputController.OnHorizontalInput += Move;
+            _inputController.OnClickJump += Jump;
             _stateController.SetIdleState(_playerView, _playerModel);
         }
 
         public void CleanUp()
         {
             _inputController.OnHorizontalInput -= Move;
+            _inputController.OnClickJump -= Jump;
         }
 
-        public void Move(float step)
+        public void LocalFixedUpdate(float fixedDeltatime)
         {
-            if (step == 0)
+            if (_playerModel.IsRun)
             {
-                if (!_playerModel.IsStay)
-                    _stateController.SetIdleState(_playerView, _playerModel);
+                var velocity = _playerView.Rigidbody.velocity;
+                velocity.x = 0;
+                _playerView.Rigidbody.velocity = velocity;
+
+                var direction = _playerModel.MoveSpeed * _playerView.transform.localScale.x * fixedDeltatime * Vector2.right;
+                _playerView.Rigidbody.AddForce(direction, ForceMode2D.Impulse);
+            }
+            
+        }
+
+        private void Move(float step)
+        {
+            DirectionController(step);
+            GroundDetector();
+
+            if (step == 0 && !_playerModel.IsStay &&/* _playerModel.IsGrounded &&*/ _playerView.Rigidbody.velocity.y == Mathf.Round(0))
+            {
+                _stateController.SetIdleState(_playerView, _playerModel);
+
+                var velocity = _playerView.Rigidbody.velocity;
+                velocity.x = 0;
+                _playerView.Rigidbody.velocity = velocity;
             }
 
-            var position = _playerView.transform.position;
-            position.x += step * 6f * Time.deltaTime;
-            _playerView.SetPosition(position);
-
-            if (step > 0)
+            if (step != 0 && !_playerModel.IsRun && /*_playerModel.IsGrounded &&*/ _playerView.Rigidbody.velocity.y == Mathf.Round(0))
             {
-                _playerView.SetRightDirection();
-
-                if (_playerModel.IsRun == false)
-                    _stateController.SetRunState(_playerView, _playerModel);
-            }
-
-            if (step < 0)
-            {
-                _playerView.SetLeftDirection();
-
-                if (_playerModel.IsRun == false)
-                    _stateController.SetRunState(_playerView, _playerModel);
+                _stateController.SetRunState(_playerView, _playerModel);                
             }
         }
+
+        private void Jump()
+        {
+            if (!_playerModel.IsGrounded)
+                return;
+
+            if (!_playerModel.IsJump)
+            {
+                _stateController.SetJumpState(_playerView, _playerModel);
+            }
+
+            _playerView.Rigidbody.AddForce(400f * Time.fixedDeltaTime * Vector2.up, ForceMode2D.Impulse);            
+        }
+
+
+        private void DirectionController(float step)
+        {
+            if (step > 0 && _playerView.Transform.localScale != _rightDir)
+            {
+                _playerView.Transform.localScale = _rightDir;
+                _playerModel.IsRightDirection = true;
+            }
+            if (step < 0 && _playerView.Transform.localScale != _leftDir)
+            {
+                _playerView.Transform.localScale = _leftDir;
+                _playerModel.IsRightDirection = false;
+            }
+        }
+
+        private void GroundDetector()
+        {
+            _playerModel.IsGrounded = _playerView.IsGrounded();
+        }
+
+
     }
 }

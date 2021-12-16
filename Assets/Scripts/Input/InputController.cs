@@ -9,6 +9,7 @@ namespace Platformer2D
         public event Action OnClickShootButton;
         public event Action OnClickSave;
         public event Action OnClickLoad;
+        public event Action OnClickJump;
 
         private readonly InputKeys _inputKeys;
         private readonly InputAxis _inputAxis;
@@ -30,6 +31,7 @@ namespace Platformer2D
             _inputKeys.GetKeyShoot(_inputKeysData, OnClickShootButton);
             _inputKeys.GetKeySaveDown(_inputKeysData, OnClickSave);
             _inputKeys.GetKeyLoadDown(_inputKeysData, OnClickLoad);
+            _inputKeys.GetKeyJumpDown(_inputKeysData, OnClickJump);
         }        
     }
 }

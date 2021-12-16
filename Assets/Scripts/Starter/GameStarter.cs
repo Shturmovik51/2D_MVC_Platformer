@@ -6,6 +6,7 @@ namespace Platformer2D
     {
         [SerializeField] private ObjectView _playerView;
         [SerializeField] private float _animationSpeed;
+        [SerializeField] private float _playerMoveSpeed;
 
         private ControllersManager _controllersManager;
         private GameData _gameData;
@@ -15,7 +16,7 @@ namespace Platformer2D
             _controllersManager = new ControllersManager();
             _gameData = (GameData) Resources.Load("GameData");
 
-            new GameInitializator(_controllersManager, _gameData, _playerView, _animationSpeed);
+            new GameInitializator(_controllersManager, _gameData, _playerView, _animationSpeed, _playerMoveSpeed);
 
             _controllersManager.Initialization();
         }

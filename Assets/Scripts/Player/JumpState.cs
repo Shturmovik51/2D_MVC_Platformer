@@ -1,23 +1,23 @@
 namespace Platformer2D
 {
-    public class IdleState : IState
+    public class JumpState : IState
     {
         public bool IsGrounded { get; }
         public bool IsRun { get; }
         public bool IsJump { get; }
         public bool IsStay { get; }
 
-        public IdleState()
+        public JumpState()
         {
             IsRun = false;
-            IsJump = false;
-            IsStay = true;
-            IsGrounded = true;
+            IsJump = true;
+            IsStay = false;
+            IsGrounded = false;
         }
 
         public void EnterState(ObjectView playerView, SpriteAnimatorController animatorController)
         {
-            animatorController.StartAnimation(playerView.SpriteRenderer, AnimationType.Idle);
+            animatorController.StartAnimation(playerView.SpriteRenderer, AnimationType.Jump);
         }
 
         public void BeingInState()

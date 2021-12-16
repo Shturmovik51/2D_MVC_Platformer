@@ -8,9 +8,11 @@ namespace Platformer2D
         [SerializeField] private KeyCode _shoot;
         [SerializeField] private KeyCode _save;
         [SerializeField] private KeyCode _load;
+        [SerializeField] private KeyCode _jump;
 
         public KeyCode Shoot => _shoot;
         public KeyCode Save => _save;
         public KeyCode Load => _load;
+        public KeyCode Jump => _jump;
     }
 }
