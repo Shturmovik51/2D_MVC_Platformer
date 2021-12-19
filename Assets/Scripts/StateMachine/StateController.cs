@@ -18,10 +18,10 @@ namespace Platformer2D
 
         public void LocalFixedUpdate(float fixedDeltatime)
         {
-            
+            _currentState.BeingInState();
         }
 
-        public void SetIdleState(ObjectView playerView, PlayerModel playerModel)   //todo сделать 1 метод на стейты
+        public void SetIdleState(PlayerView playerView, PlayerModel playerModel)   //todo сделать 1 метод на стейты
         {
             if(_currentState != null)
             {
@@ -34,7 +34,7 @@ namespace Platformer2D
 
         }
 
-        public void SetRunState(ObjectView playerView, PlayerModel playerModel)
+        public void SetRunState(PlayerView playerView, PlayerModel playerModel)
         {
             if (_currentState != null)
             {
@@ -45,7 +45,7 @@ namespace Platformer2D
             SetModelState(playerModel, _currentState);
             _currentState.EnterState(playerView, _animatorController);
         }
-        public void SetJumpState(ObjectView playerView, PlayerModel playerModel)
+        public void SetJumpState(PlayerView playerView, PlayerModel playerModel)
         {
             if (_currentState != null)
             {

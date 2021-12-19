@@ -16,9 +16,10 @@ namespace Platformer2D
 
             _playerAnimations = new List<Animation>
             {
-                new Animation(AnimationType.Idle, GetSprites(AnimationType.Idle), true, _animationSpeed),
-                new Animation(AnimationType.Run, GetSprites(AnimationType.Run), true, _animationSpeed),
-                new Animation(AnimationType.Jump, GetSprites(AnimationType.Jump), false, _animationSpeed)
+                new Animation(AnimationType.Idle, GetSprites(AnimationType.Idle), true, _animationSpeed, true),
+                new Animation(AnimationType.RunForward, GetSprites(AnimationType.RunForward), true, _animationSpeed, true),
+                new Animation(AnimationType.RunReverse, GetSprites(AnimationType.RunForward), true, _animationSpeed, false),
+                new Animation(AnimationType.Jump, GetSprites(AnimationType.Jump), false, _animationSpeed, true),
             };
         }
 

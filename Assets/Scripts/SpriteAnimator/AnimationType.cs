@@ -3,7 +3,8 @@ namespace Platformer2D
     public enum AnimationType
     {
         Idle = 0,
-        Run = 1,
-        Jump = 2
+        RunForward = 1,
+        RunReverse = 2,
+        Jump = 3
     }
 }

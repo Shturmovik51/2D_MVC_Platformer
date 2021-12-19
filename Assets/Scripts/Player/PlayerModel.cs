@@ -7,7 +7,7 @@ namespace Platformer2D
         public bool IsRun;
         public bool IsJump;
         public bool IsStay;
-        public bool IsRightDirection;
+        //public bool IsForwardMove;
 
         public PlayerModel(float moveSpeed)
         {

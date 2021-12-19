@@ -21,6 +21,15 @@ namespace Platformer2D
         {
             _activeAnimations.Clear();
         }
+        
+        public void LocalUpdate(float deltatime)
+        {
+            foreach (var animation in _activeAnimations)
+            {
+                animation.Value.PlayAnimation(deltatime);
+                animation.Key.sprite = animation.Value.Sprites[(int)animation.Value.SpriteCounter];
+            }
+        }
 
         public void StartAnimation(SpriteRenderer spriteRenderer, AnimationType type)
         {
@@ -43,15 +52,6 @@ namespace Platformer2D
             if (_activeAnimations.ContainsKey(sprite))
             {
                 _activeAnimations.Remove(sprite);
-            }
-        }
-
-        public void LocalUpdate(float deltatime)
-        {
-            foreach (var animation in _activeAnimations)
-            {
-                animation.Value.PlayAnimation(deltatime);
-                animation.Key.sprite = animation.Value.Sprites[(int)animation.Value.SpriteCounter];
             }
         }       
     }

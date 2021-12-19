@@ -13,7 +13,7 @@ namespace Platformer2D
             IsStay = false;
         }
 
-        public void EnterState(ObjectView playerView, SpriteAnimatorController animatorController)
+        public void EnterState(PlayerView playerView, SpriteAnimatorController animatorController)
         {
             animatorController.StartAnimation(playerView.SpriteRenderer, AnimationType.Jump);
         }
@@ -23,7 +23,7 @@ namespace Platformer2D
 
         }
 
-        public void ExitState(ObjectView playerView, SpriteAnimatorController animatorController)
+        public void ExitState(PlayerView playerView, SpriteAnimatorController animatorController)
         {
             animatorController.StopAnimation(playerView.SpriteRenderer);
         }

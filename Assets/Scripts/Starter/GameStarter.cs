@@ -4,9 +4,10 @@ namespace Platformer2D
 {
     public class GameStarter : MonoBehaviour
     {
-        [SerializeField] private ObjectView _playerView;
+        [SerializeField] private PlayerView _playerView;
         [SerializeField] private float _animationSpeed;
         [SerializeField] private float _playerMoveSpeed;
+        [SerializeField] private Transform _arm;
 
         private ControllersManager _controllersManager;
         private GameData _gameData;
@@ -16,7 +17,7 @@ namespace Platformer2D
             _controllersManager = new ControllersManager();
             _gameData = (GameData) Resources.Load("GameData");
 
-            new GameInitializator(_controllersManager, _gameData, _playerView, _animationSpeed, _playerMoveSpeed);
+            new GameInitializator(_controllersManager, _gameData, _playerView, _animationSpeed, _playerMoveSpeed, _arm);
 
             _controllersManager.Initialization();
         }

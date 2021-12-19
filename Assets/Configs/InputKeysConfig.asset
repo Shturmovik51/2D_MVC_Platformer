@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: InputKeysConfig
   m_EditorClassIdentifier: 
   _shoot: 323
+  _aim: 324
   _save: 286
   _load: 290
   _jump: 32

@@ -10,6 +10,16 @@ namespace Platformer2D
             if (Input.GetKey(_inputKeysData.Shoot)) action?.Invoke();
         }
 
+        public void GetKeyAimDown(InputKeysConfig _inputKeysData, Action<bool> action)
+        {
+            if (Input.GetKeyDown(_inputKeysData.Aim)) action?.Invoke(true);
+        }
+
+        public void GetKeyAimUp(InputKeysConfig _inputKeysData, Action<bool> action)
+        {
+            if (Input.GetKeyUp(_inputKeysData.Aim)) action?.Invoke(false);
+        }
+
         public void GetKeySaveDown(InputKeysConfig _inputKeysData, Action action)
         {
             if (Input.GetKeyDown(_inputKeysData.Save)) action?.Invoke();

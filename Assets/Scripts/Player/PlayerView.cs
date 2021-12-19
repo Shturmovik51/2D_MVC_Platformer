@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Platformer2D
 {
-    public class ObjectView : MonoBehaviour
+    public class PlayerView : MonoBehaviour
     {
         [SerializeField] private Transform _transform;
         [SerializeField] private SpriteRenderer _spriteRenderer;
