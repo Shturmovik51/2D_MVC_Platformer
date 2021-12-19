@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   _playerAnimationsConfig: {fileID: 11400000, guid: f0cacd881b3c4994b957ac7e30bc288c, type: 2}
+  _shootAnimationConfig: {fileID: 11400000, guid: 0a46174353b9f474e8660e99cfe5eaa3, type: 2}
   _userInput: {fileID: 11400000, guid: b0a7ab72630137c4f890d4cd8967bf2e, type: 2}

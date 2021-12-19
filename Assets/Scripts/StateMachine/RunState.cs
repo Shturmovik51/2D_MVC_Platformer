@@ -42,7 +42,6 @@ namespace Platformer2D
                 if (_currentScale < 0 && _playerView.Rigidbody.velocity.x < 0)
                     _animatorController.StartAnimation(_playerView.SpriteRenderer, AnimationType.RunForward);
             }
-
         }
 
         public void ExitState(PlayerView playerView, SpriteAnimatorController animatorController)

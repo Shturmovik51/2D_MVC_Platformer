@@ -5,6 +5,7 @@ namespace Platformer2D
         Idle = 0,
         RunForward = 1,
         RunReverse = 2,
-        Jump = 3
+        Jump = 3,
+        Shoot = 4
     }
 }

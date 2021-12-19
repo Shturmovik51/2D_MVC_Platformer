@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Platformer2D
@@ -8,9 +6,11 @@ namespace Platformer2D
     public class GameData : ScriptableObject
     {
         [SerializeField] private SpriteAnimationsConfig _playerAnimationsConfig;
+        [SerializeField] private SpriteAnimationsConfig _shootAnimationConfig;
         [SerializeField] private InputKeysConfig _userInput;
 
         public SpriteAnimationsConfig PlayerAnimationsConfig => _playerAnimationsConfig;
+        public SpriteAnimationsConfig ShootAnimationConfig => _shootAnimationConfig;
         public InputKeysConfig UserInput => _userInput;
     }
 }

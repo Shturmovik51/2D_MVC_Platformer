@@ -12,12 +12,14 @@ namespace Platformer2D
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Transform _groundDetector;
         [SerializeField] private LayerMask _groundMask;
+        [SerializeField] private SpriteRenderer _shootEffect;
         private float _groundDetectorRadius = 0.2f;
 
         public Transform Transform => _transform;
         public SpriteRenderer SpriteRenderer => _spriteRenderer;
         public Collider2D Collider => _collider;
         public Rigidbody2D Rigidbody => _rigidbody;
+        public SpriteRenderer ShootEffect => _shootEffect;
 
         public bool IsGrounded()
         {

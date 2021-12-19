@@ -11,13 +11,15 @@ namespace Platformer2D
             var camera = Camera.main;
             var inputController = new InputController(gameData);
             var playerAnimationsFactory = new PlayerAnimationsFactory(gameData, animationSpeed);
-            var animatorController = new SpriteAnimatorController(playerAnimationsFactory);
+            var effectsAnimationFactory = new EffectsAnimationsFactory(gameData, animationSpeed);
+            var animatorController = new SpriteAnimatorController(playerAnimationsFactory, effectsAnimationFactory);
             var cameraPositionController = new CameraPositionController(camera, playerView.transform);
             var stateController = new StateController(animatorController);
             var playerModel = new PlayerModel(playerMOveSpeed);
             var playerController = new PlayerController(playerView, inputController, stateController, playerModel);
             var armController = new ArmController(arm, inputController, playerView);
             var flipController = new FlipController(armController, playerView, inputController);
+            var shootController = new ShootController(inputController, animatorController, playerView, armController);
 
             controllersManager.Add(animatorController);
             controllersManager.Add(inputController);
@@ -26,6 +28,7 @@ namespace Platformer2D
             controllersManager.Add(cameraPositionController);
             controllersManager.Add(armController);
             controllersManager.Add(flipController);
+            controllersManager.Add(shootController);
         }
     }
 }

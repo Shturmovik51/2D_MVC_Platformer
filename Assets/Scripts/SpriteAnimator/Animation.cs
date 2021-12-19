@@ -26,10 +26,10 @@ namespace Platformer2D
             _isForward = isForward;
         }
 
-        public Animation ResetAnimation()
+        public void ResetAnimation()
         {
             _spriteCounter = 0;
-            return this;
+            _sleep = false;
         }
 
         public void PlayAnimation(float deltatime)

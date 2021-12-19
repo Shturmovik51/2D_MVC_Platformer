@@ -9,12 +9,13 @@ namespace Platformer2D
         private List<Animation> _allAnimations;
         private Dictionary<SpriteRenderer, Animation> _activeAnimations;
 
-        public SpriteAnimatorController(PlayerAnimationsFactory playerAnimationsFactory)
+        public SpriteAnimatorController(PlayerAnimationsFactory playerAnimFactory, EffectsAnimationsFactory effectsAnimFactory)
         {
             _allAnimations = new List<Animation>();
             _activeAnimations = new Dictionary<SpriteRenderer, Animation>();
 
-            _allAnimations.AddRange(playerAnimationsFactory.GetPlayerAnimations());
+            _allAnimations.AddRange(playerAnimFactory.GetPlayerAnimations());
+            _allAnimations.AddRange(effectsAnimFactory.GetEffectsAnimations());
         }
 
         public void CleanUp()

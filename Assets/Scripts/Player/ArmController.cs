@@ -36,6 +36,7 @@ namespace Platformer2D
             { 
                 if(_playerView.Transform.localScale.x > 0)
                 {
+                    _playerView.ShootEffect.enabled = true;
                     _mousePos = _inputController.MousePosition;
                     var dir = new Vector3 (_mousePos.x - _arm.position.x, _mousePos.y - _arm.position.y, _arm.position.z);
                     var angle = Vector3.Angle(Vector3.right, dir);
@@ -46,6 +47,7 @@ namespace Platformer2D
 
                 if (_playerView.Transform.localScale.x < 0)
                 {
+                    _playerView.ShootEffect.enabled = true;
                     _mousePos = _inputController.MousePosition;
                     var dir = new Vector3(_mousePos.x - _arm.position.x, _mousePos.y - _arm.position.y, _arm.position.z);
                     var angle = Vector3.Angle(Vector3.left, dir);
@@ -56,7 +58,10 @@ namespace Platformer2D
 
             }
             else if (_arm.localRotation != _idleRot)
+            {
                 _arm.localRotation = _idleRot;
+                _playerView.ShootEffect.enabled = false;
+            }
         }
 
         private void SetArmRotation(Vector3 direction) // todo закрасивить DRY
