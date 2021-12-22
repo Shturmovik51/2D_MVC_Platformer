@@ -6,6 +6,7 @@ namespace Platformer2D
         RunForward = 1,
         RunReverse = 2,
         Jump = 3,
-        Shoot = 4
+        Shoot = 4,
+        Water = 5
     }
 }

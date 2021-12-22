@@ -36,9 +36,9 @@ namespace Platformer2D
             float paralaxDistX = (mainCamera.transform.position.x * parallaxEffect);
             float paralaxDistY = (mainCamera.transform.position.y * parallaxEffect);
 
-            backGround1.position = new Vector3(startpos1.x + paralaxDistX, startpos1.y + paralaxDistY, backGround1.position.z);
-            backGround2.position = new Vector3(startpos2.x + paralaxDistX, startpos2.y + paralaxDistY, backGround2.position.z);
-            backGround3.position = new Vector3(startpos3.x + paralaxDistX, startpos3.y + paralaxDistY, backGround3.position.z);
+            backGround1.position = new Vector3(startpos1.x + paralaxDistX, startpos1.y + 0.5f * paralaxDistY, backGround1.position.z);
+            backGround2.position = new Vector3(startpos2.x + paralaxDistX, startpos2.y + 0.5f * paralaxDistY, backGround2.position.z);
+            backGround3.position = new Vector3(startpos3.x + paralaxDistX, startpos3.y + 0.5f * paralaxDistY, backGround3.position.z);
 
             float farDist1 = mainCamera.transform.position.x - backGround1.position.x;
             float farDist2 = mainCamera.transform.position.x - backGround2.position.x;

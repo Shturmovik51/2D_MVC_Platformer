@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +16,7 @@ namespace Platformer2D
 
             _effectsAnimations = new List<Animation>
             {
-                new Animation(AnimationType.Shoot, GetSprites(AnimationType.Shoot), false, _animationSpeed * 2, true)                
+                new Animation(AnimationType.Shoot, GetSprites(AnimationType.Shoot), false, _animationSpeed * 2, true, 0)                
             };
         }
 

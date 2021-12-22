@@ -11,24 +11,26 @@ namespace Platformer2D
         private float _speed = 10;
         private bool _sleep;
         private bool _isForward;
+        private int _startSprite;
         private float _spriteCounter = 0;
 
         public List<Sprite> Sprites => _sprites;
         public float SpriteCounter => _spriteCounter;
         public AnimationType AnimationType => _animationType;
 
-        public Animation(AnimationType animationType, List<Sprite> sprites, bool loop, float speed, bool isForward)
+        public Animation(AnimationType animationType, List<Sprite> sprites, bool loop, float speed, bool isForward, int startSprite)
         {
             _animationType = animationType;
             _sprites = sprites;
             _loop = loop;
             _speed = speed;
             _isForward = isForward;
+            _spriteCounter = _startSprite;
         }
 
         public void ResetAnimation()
         {
-            _spriteCounter = 0;
+            _spriteCounter = _startSprite;
             _sleep = false;
         }
 

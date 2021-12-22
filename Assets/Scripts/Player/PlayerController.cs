@@ -42,15 +42,14 @@ namespace Platformer2D
 
                 var direction = _playerModel.MoveSpeed * _moveStep * fixedDeltatime * Vector2.right;
                 _playerView.Rigidbody.AddForce(direction, ForceMode2D.Impulse);
-            }
-            
+            }            
         }
 
         private void Move(float step)
         {
             _moveStep = step;
 
-            if (_moveStep == Mathf.Round(0) && !_playerModel.IsStay && _playerView.Rigidbody.velocity.y == Mathf.Round(0))
+            if (_moveStep == Mathf.Round(0) && !_playerModel.IsStay && _playerView.Rigidbody.velocity.y == Mathf.Round(0) && _playerView.IsGrounded())
             {
                 _stateController.SetIdleState(_playerView, _playerModel);
 
@@ -59,7 +58,7 @@ namespace Platformer2D
                 _playerView.Rigidbody.velocity = velocity;
             }
 
-            if (_moveStep != 0 && !_playerModel.IsRun && _playerView.Rigidbody.velocity.y == Mathf.Round(0))
+            if (_moveStep != 0 && !_playerModel.IsRun && _playerView.Rigidbody.velocity.y == Mathf.Round(0) && _playerView.IsGrounded())
             {
                 _stateController.SetRunState(_playerView, _playerModel);                
             }

@@ -6,13 +6,15 @@ namespace Platformer2D
     public sealed class GameInitializator
     {
         public GameInitializator(ControllersManager controllersManager, GameData gameData, PlayerView playerView, 
-                    float animationSpeed, float playerMOveSpeed, Transform arm)
+                    float animationSpeed, float playerMOveSpeed, Transform arm, SpriteRenderer[] waterSpriteRenderers)
         {
             var camera = Camera.main;
             var inputController = new InputController(gameData);
             var playerAnimationsFactory = new PlayerAnimationsFactory(gameData, animationSpeed);
+            var waterAnimationFactory = new WaterAnimationFactory(gameData, animationSpeed);
             var effectsAnimationFactory = new EffectsAnimationsFactory(gameData, animationSpeed);
-            var animatorController = new SpriteAnimatorController(playerAnimationsFactory, effectsAnimationFactory);
+            var animatorController = new SpriteAnimatorController(playerAnimationsFactory, effectsAnimationFactory, 
+                                                    waterAnimationFactory, waterSpriteRenderers);
             var cameraPositionController = new CameraPositionController(camera, playerView.transform);
             var stateController = new StateController(animatorController);
             var playerModel = new PlayerModel(playerMOveSpeed);

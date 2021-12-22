@@ -8,7 +8,9 @@ namespace Platformer2D
         [SerializeField] private float _animationSpeed;
         [SerializeField] private float _playerMoveSpeed;
         [SerializeField] private Transform _arm;
+        [SerializeField] Transform _water;
 
+        private SpriteRenderer[] _waterSpriteRenderers;
         private ControllersManager _controllersManager;
         private GameData _gameData;
 
@@ -16,8 +18,10 @@ namespace Platformer2D
         {
             _controllersManager = new ControllersManager();
             _gameData = (GameData) Resources.Load("GameData");
+            _waterSpriteRenderers = _water.GetComponentsInChildren<SpriteRenderer>();
 
-            new GameInitializator(_controllersManager, _gameData, _playerView, _animationSpeed, _playerMoveSpeed, _arm);
+            new GameInitializator(_controllersManager, _gameData, _playerView, _animationSpeed, _playerMoveSpeed, _arm, 
+                                    _waterSpriteRenderers);
 
             _controllersManager.Initialization();
         }
