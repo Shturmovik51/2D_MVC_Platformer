@@ -9,6 +9,10 @@ namespace Platformer2D
         private ArmController _armController;
         private PlayerView _playerView;
         private InputController _inputController;
+        private Transform _shootEffectTransform;
+
+        private Vector3 _rightShootRotation = new Vector3 (0,0,0);
+        private Vector3 _leftShootRotation = new Vector3 (0,0,-180);
 
         private Vector3 _rightDir = new Vector3(1, 1, 1);
         private Vector3 _leftDir = new Vector3(-1, 1, 1);
@@ -17,30 +21,23 @@ namespace Platformer2D
             _armController = armController;
             _playerView = playerView;
             _inputController = inputController;
+            _shootEffectTransform = playerView.ShootEffect.transform;
         }
 
         public void LocalUpdate(float deltaTime)
         {
-            var speed = _playerView.Rigidbody.velocity.x;
-
-            if(_playerView.Transform.position.x - _inputController.MousePosition.x < 0)
+            if(_playerView.Transform.position.x - _inputController.MousePosition.x < 0 && _playerView.Transform.localScale != _rightDir)
             {
                 _playerView.Transform.localScale = _rightDir;
+                _shootEffectTransform.localScale = _rightDir;
+                _shootEffectTransform.localRotation = Quaternion.Euler(_rightShootRotation);
             }
-            else
+            if (_playerView.Transform.position.x - _inputController.MousePosition.x > 0 && _playerView.Transform.localScale != _leftDir)
             {
                 _playerView.Transform.localScale = _leftDir;
+                _shootEffectTransform.localScale = _leftDir;
+                _shootEffectTransform.localRotation = Quaternion.Euler(_leftShootRotation);
             }
-
-
-            //if (speed > 0 && _playerView.Transform.localScale != _rightDir)
-            //{
-            //    _playerView.Transform.localScale = _rightDir;
-            //}
-            //if (speed < 0 && _playerView.Transform.localScale != _leftDir)
-            //{
-            //    _playerView.Transform.localScale = _leftDir;
-            //}
         }
     }
 }

@@ -11,10 +11,12 @@ namespace Platformer2D
         private SpriteAnimatorController _animatorController;
         private SpriteRenderer _shootEffect;
         private ArmController _armController;
+        private Transform _shootRayStartPosition;
         private bool _isReadyToShoot = true;
         private float _delayTime = 0.1f;
         private float _timer;
         private int _shootForse = 5;
+        private float _shootDistance = 500;
         public ShootController(InputController inputController, SpriteAnimatorController animatorController, PlayerView playerView,
                     ArmController armController)
         {
@@ -22,6 +24,7 @@ namespace Platformer2D
             _animatorController = animatorController;
             _shootEffect = playerView.ShootEffect;
             _armController = armController;
+            _shootRayStartPosition = playerView.ShootEffect.transform;
         }
 
         public void Initialization()
@@ -53,8 +56,8 @@ namespace Platformer2D
             _isReadyToShoot = false;
             _timer = _delayTime;
             _animatorController.StartAnimation(_shootEffect, AnimationType.Shoot);
-
-            if (Physics2D.Raycast(_armController.Arm.position, _armController.Arm.forward))
+                        
+            if (Physics2D.Raycast(_shootRayStartPosition.position, _shootRayStartPosition.right, 11))
                 Debug.Log("hit");
         }
     }
