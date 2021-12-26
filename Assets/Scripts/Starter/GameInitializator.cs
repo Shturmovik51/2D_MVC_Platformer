@@ -22,9 +22,10 @@ namespace Platformer2D
             var playerController = new PlayerController(playerView, inputController, stateController, playerModel);
             var armController = new ArmController(arm, inputController, playerView);
             var flipController = new FlipController(armController, playerView, inputController);
+            
             var shootController = new ShootController(inputController, animatorController, playerView, armController);
-
-
+            var barrelsInitialisator = new BarrelsInitialisator(barrels);
+            var hitController = new HitController(barrelsInitialisator, shootController);
 
 
 
@@ -37,6 +38,7 @@ namespace Platformer2D
             controllersManager.Add(armController);
             controllersManager.Add(flipController);
             controllersManager.Add(shootController);
+            controllersManager.Add(hitController);
         }
     }
 }

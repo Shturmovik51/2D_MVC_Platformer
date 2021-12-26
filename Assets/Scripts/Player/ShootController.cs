@@ -34,7 +34,7 @@ namespace Platformer2D
 
         public void CleanUp()
         {
-            
+            _inputController.OnClickShootButton -= Shoot;
         }
 
         public void LocalUpdate(float deltaTime)
@@ -56,9 +56,11 @@ namespace Platformer2D
             _isReadyToShoot = false;
             _timer = _delayTime;
             _animatorController.StartAnimation(_shootEffect, AnimationType.Shoot);
-                        
-            if (Physics2D.Raycast(_shootRayStartPosition.position, _shootRayStartPosition.right, 11))
-                Debug.Log("hit");
+
+            var collider = Physics2D.Raycast(_shootRayStartPosition.position, _shootRayStartPosition.right, 11).collider;
+
+            if(collider != null)
+                OnHitSomeThing?.Invoke(collider, _shootForse);
         }
     }
 }

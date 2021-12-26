@@ -8,9 +8,9 @@ namespace Platformer2D
     {
         public Health _health { get; } 
 
-        public BarrelModel()
+        public BarrelModel(int health)
         {
-            _health = new Health(5,5);
+            _health = new Health(health, health);
         }
     }
 }
