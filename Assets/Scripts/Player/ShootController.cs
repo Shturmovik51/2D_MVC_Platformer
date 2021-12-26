@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace Platformer2D
 {
     public class ShootController: IInitializable, ICleanable, IController, IUpdatable
     {
+        public event Action<Collider2D, int> OnHitSomeThing;
+
         private InputController _inputController;
         private SpriteAnimatorController _animatorController;
         private SpriteRenderer _shootEffect;
@@ -13,6 +14,7 @@ namespace Platformer2D
         private bool _isReadyToShoot = true;
         private float _delayTime = 0.1f;
         private float _timer;
+        private int _shootForse = 5;
         public ShootController(InputController inputController, SpriteAnimatorController animatorController, PlayerView playerView,
                     ArmController armController)
         {
@@ -51,6 +53,9 @@ namespace Platformer2D
             _isReadyToShoot = false;
             _timer = _delayTime;
             _animatorController.StartAnimation(_shootEffect, AnimationType.Shoot);
+
+            if (Physics2D.Raycast(_armController.Arm.position, _armController.Arm.forward))
+                Debug.Log("hit");
         }
     }
 }

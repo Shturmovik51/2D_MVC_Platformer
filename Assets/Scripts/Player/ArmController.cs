@@ -9,8 +9,11 @@ namespace Platformer2D
         private InputController _inputController;
         private Vector3 _mousePos;
         private PlayerView _playerView;
+        private Transform _shootPosition;
 
         private bool _isAim;
+
+        public Transform Arm => _arm;
         public bool IsAim => _isAim;
         public ArmController(Transform arm, InputController inputController, PlayerView playerView)
         {
