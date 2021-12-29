@@ -11,10 +11,10 @@ namespace Platformer2D
         private Vector3 _newCameraPosition;
         private Vector2 _positionOffSet;
 
-        public CameraPositionController(Camera camera, Transform playerTransform)
+        public CameraPositionController(Camera camera, StarterGameData starterGameData)
         {
             _camera = camera;
-            _playerTransform = playerTransform;
+            _playerTransform = starterGameData.PlayerView.Transform;
             _positionOffSet = new Vector2(3, 2);
         }
 

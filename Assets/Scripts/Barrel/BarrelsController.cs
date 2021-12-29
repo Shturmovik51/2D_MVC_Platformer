@@ -20,7 +20,10 @@ namespace Platformer2D
             for (int i = 0; i < _barrelViews.Count; i++)
             {
                 if (_barrelViews[i].Collider == collider)
+                {
                     _barrelViews[i].Explosion();
+                    Object.Destroy(_barrelViews[i].Collider.gameObject);
+                }
             }
         }
     }

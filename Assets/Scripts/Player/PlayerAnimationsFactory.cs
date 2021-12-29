@@ -9,10 +9,10 @@ namespace Platformer2D
         private List<Animation> _playerAnimations;
         private float _animationSpeed;
 
-        public PlayerAnimationsFactory(GameData gameData, float animationSpeed)
+        public PlayerAnimationsFactory(GameData gameData, StarterGameData _starterGameData)
         {
             _spritesSet = gameData.PlayerAnimationsConfig.SpritesSet;
-            _animationSpeed = animationSpeed;
+            _animationSpeed = _starterGameData.AnimationSpeed;
 
             _playerAnimations = new List<Animation>
             {

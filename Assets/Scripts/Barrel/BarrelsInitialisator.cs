@@ -11,9 +11,9 @@ namespace Platformer2D
         private List<BarrelView> _barrelViews;
         private int _barrelHealth = 5;
 
-        public BarrelsInitialisator(SpriteRenderer[] barrelObjects)
+        public BarrelsInitialisator(StarterGameData starterGameData)
         {
-            _barrelsObjects = barrelObjects;
+            _barrelsObjects = starterGameData.BarrelsContainer.GetComponentsInChildren<SpriteRenderer>();
             _barrels = new Dictionary<Collider2D, IDamagable>(_barrelsObjects.Length);
             _barrelModels = new List<BarrelModel>(_barrelsObjects.Length);
             _barrelViews = new List<BarrelView>(_barrelsObjects.Length);

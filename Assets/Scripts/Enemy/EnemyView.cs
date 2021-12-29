@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Platformer2D
 {
-    public class EnemyView : MonoBehaviour
+    public class EnemyView : MonoBehaviour, IEnemyView
     {
         [SerializeField] private Transform _transform;
         [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -10,7 +10,10 @@ namespace Platformer2D
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Transform _targetDetector;
         [SerializeField] private LayerMask _groundMask;
-        [SerializeField] private SpriteRenderer _shootEffect;
+
         private float _targetDetectorRadius = 0.2f;
+
+        public SpriteRenderer SpriteRenderer => _spriteRenderer;
+        public Transform Transform => _transform;
     }
 }

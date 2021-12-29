@@ -9,9 +9,9 @@ namespace Platformer2D
         public bool IsStay;
         //public bool IsForwardMove;
 
-        public PlayerModel(float moveSpeed)
+        public PlayerModel(StarterGameData starterGameData)
         {
-            MoveSpeed = moveSpeed;
+            MoveSpeed = starterGameData.PlayerMoveSpeed;
         }
     }
 }

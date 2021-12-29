@@ -7,6 +7,8 @@ namespace Platformer2D
         RunReverse = 2,
         Jump = 3,
         Shoot = 4,
-        Water = 5
+        Water = 5,
+        GreenEnemyWalk = 6,
+        BlueEnemyWalk = 7
     }
 }

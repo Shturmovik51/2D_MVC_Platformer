@@ -11,10 +11,10 @@ namespace Platformer2D
         private PlayerModel _playerModel;
         private float _moveStep;
 
-        public PlayerController(PlayerView playerView, InputController inputController, StateController stateController, 
+        public PlayerController(StarterGameData starterGameData, InputController inputController, StateController stateController, 
                     PlayerModel playerModel)
         {
-            _playerView = playerView;
+            _playerView = starterGameData.PlayerView;
             _inputController = inputController;
             _stateController = stateController;
             _playerModel = playerModel;

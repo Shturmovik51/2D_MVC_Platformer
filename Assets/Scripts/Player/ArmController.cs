@@ -15,11 +15,11 @@ namespace Platformer2D
 
         public Transform Arm => _arm;
         public bool IsAim => _isAim;
-        public ArmController(Transform arm, InputController inputController, PlayerView playerView)
+        public ArmController(StarterGameData starterGameData, InputController inputController)
         {
-            _arm = arm;
+            _arm = starterGameData.Arm;
             _inputController = inputController;
-            _playerView = playerView;
+            _playerView = starterGameData.PlayerView;
         }
 
         public void Initialization()

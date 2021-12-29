@@ -9,10 +9,10 @@ namespace Platformer2D
         private List<Animation> _waterAnimations;
         private float _animationSpeed;
 
-        public WaterAnimationFactory(GameData gameData, float animationSpeed)
+        public WaterAnimationFactory(GameData gameData, StarterGameData starterGameData)
         {
             _waterSprites = gameData.WaterAnimationConfig.SpritesSet;
-            _animationSpeed = animationSpeed;
+            _animationSpeed = starterGameData.AnimationSpeed;
 
             _waterAnimations = new List<Animation>(GetSprites(AnimationType.Water).Count);
 

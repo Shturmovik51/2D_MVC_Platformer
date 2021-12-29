@@ -16,12 +16,12 @@ namespace Platformer2D
 
         private Vector3 _rightDir = new Vector3(1, 1, 1);
         private Vector3 _leftDir = new Vector3(-1, 1, 1);
-        public FlipController(ArmController armController, PlayerView playerView, InputController inputController)
+        public FlipController(ArmController armController, StarterGameData starterGameData, InputController inputController)
         {
             _armController = armController;
-            _playerView = playerView;
+            _playerView = starterGameData.PlayerView;
             _inputController = inputController;
-            _shootEffectTransform = playerView.ShootEffect.transform;
+            _shootEffectTransform = _playerView.ShootEffect.transform;
         }
 
         public void LocalUpdate(float deltaTime)

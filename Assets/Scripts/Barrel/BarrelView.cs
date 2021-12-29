@@ -21,9 +21,6 @@ namespace Platformer2D
 
         public void Explosion()
         {
-            var explPosition = _barrelTransform.position;
-            var explRadius = 3;
-
             Collider2D[] colliders = new Collider2D[60];
             Physics2D.OverlapCircleNonAlloc(_barrelTransform.position, 3, colliders);
 

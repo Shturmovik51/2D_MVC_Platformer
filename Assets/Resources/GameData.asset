@@ -15,4 +15,6 @@ MonoBehaviour:
   _playerAnimationsConfig: {fileID: 11400000, guid: f0cacd881b3c4994b957ac7e30bc288c, type: 2}
   _shootAnimationConfig: {fileID: 11400000, guid: 0a46174353b9f474e8660e99cfe5eaa3, type: 2}
   _waterAnimationConfig: {fileID: 11400000, guid: c44fc8b6261d51647b9c5686913aca80, type: 2}
+  _enemiesAnimationConfig: {fileID: 11400000, guid: 90cb8f4d06cfdf942840d8ea7108a9ca, type: 2}
   _userInput: {fileID: 11400000, guid: b0a7ab72630137c4f890d4cd8967bf2e, type: 2}
+  _enemyConfig: {fileID: 11400000, guid: e9564755f6756b841bba7f288b4a7491, type: 2}
