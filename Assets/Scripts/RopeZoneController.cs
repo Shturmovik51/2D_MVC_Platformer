@@ -8,6 +8,7 @@ namespace Platformer2D
         [SerializeField] private Transform _beam;
         [SerializeField] private Collider2D _capsuleCollider;
         [SerializeField] private Collider2D _boxCollider;
+        [SerializeField] private Collider2D _wheelCollider;
 
         private bool _isOnRope;
 
@@ -27,6 +28,7 @@ namespace Platformer2D
                 collision.transform.rotation = Quaternion.identity;
                 collision.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 _boxCollider.enabled = false;
+                _wheelCollider.enabled = false;
             }
         }
     }

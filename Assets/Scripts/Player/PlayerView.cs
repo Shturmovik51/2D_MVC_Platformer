@@ -12,7 +12,7 @@ namespace Platformer2D
         [SerializeField] private LayerMask _groundMask;
         [SerializeField] private SpriteRenderer _shootEffect;
 
-        private float _groundDetectorRadius = 0.2f;
+        private float _groundDetectorRadius = 0.4f;
 
         public Transform Transform => _transform;
         public SpriteRenderer SpriteRenderer => _spriteRenderer;
