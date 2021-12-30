@@ -23,7 +23,7 @@ namespace Platformer2D
 
 
             var enemiesPoolController = new EnemiesPoolController(gameData, starterGameData);
-            var enemiesController = new EnemiesController(enemiesPoolController, animatorController);
+            var enemiesController = new EnemiesController(enemiesPoolController, animatorController, starterGameData);
 
             var spawners = Object.FindObjectsOfType<EnemiesSpawner>();
             for (int i = 0; i < spawners.Length; i++)

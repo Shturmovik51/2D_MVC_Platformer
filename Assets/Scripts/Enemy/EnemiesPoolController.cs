@@ -40,7 +40,7 @@ namespace Platformer2D
 
         }
 
-        public EnemyView ProvideZombie()
+        public (EnemyView view, EnemyModel model) ProvideZombie()
         {
             var enemyView = (EnemyView) _enemyViews[0];
             var enemyModel = (EnemyModel) _enemyModels[0];
@@ -50,7 +50,7 @@ namespace Platformer2D
 
             OnSpawnEnemy.Invoke(enemyView, enemyModel);
 
-            return enemyView;
+            return (enemyView, enemyModel);
         }
 
         public void ReturnEnemyToPool(EnemyView view, EnemyModel model)

@@ -11,6 +11,7 @@ namespace Platformer2D
         [SerializeField] private Transform _spawnPoint;
         [SerializeField] private bool _isLeftSpawn;
         [SerializeField] private bool _isHavePatrolZone;
+        [SerializeField] private bool _isNoMove;
         [SerializeField] private float _spawnInterval;
         [SerializeField] private int _spawnCount;
 
@@ -43,22 +44,29 @@ namespace Platformer2D
         private void SpawnEnemy()
         {
             _spawnCount--;
-            if (_spawnCount <= 0)
+            if (_spawnCount < 0)
             {
                 _isSpawn = false;
                 return;
             }
 
             var enemy = _enemiesPoolController.ProvideZombie();
-            enemy.Transform.parent = null;
-            enemy.Transform.position = _spawnPoint.position;
-            enemy.gameObject.SetActive(true);
+            enemy.view.Transform.parent = null;
+            enemy.view.Transform.position = _spawnPoint.position;
+            enemy.view.SpriteRenderer.sortingOrder = Random.Range(0, 11);
 
             if (_isLeftSpawn)
-                enemy.Transform.localScale = _leftDir;
+                enemy.view.Transform.localScale = _leftDir;
             if (!_isLeftSpawn)
-                enemy.Transform.localScale = _rightDir;
+                enemy.view.Transform.localScale = _rightDir;
 
+            if (_isHavePatrolZone)
+                enemy.model.SetPatrolZone(_leftPatrolBorder, _rightpatrolBotder);
+
+            if (_isNoMove)
+                enemy.view.Rigidbody.freezeRotation = false;
+
+            enemy.view.gameObject.SetActive(true);
         }
     }
 }
