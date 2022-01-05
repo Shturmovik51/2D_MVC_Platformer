@@ -18,5 +18,15 @@ namespace Platformer2D
             if (HP <= 0)
                 HP = 0;
         }
+
+        public void ResetHealth()
+        {
+            HP = MaxHP;
+        }
+
+        public float GetFillAmountValue()
+        {
+            return (float) HP / MaxHP;
+        }
     }
 }

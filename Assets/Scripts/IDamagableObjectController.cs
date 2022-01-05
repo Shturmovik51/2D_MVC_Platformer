@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Platformer2D
 {
-    public interface IDamagable
+    public interface IDamagableObjectController
     {
         public void GetDamage(Collider2D collider, int value);
     }

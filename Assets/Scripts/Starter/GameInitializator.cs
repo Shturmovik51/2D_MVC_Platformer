@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Platformer2D
@@ -18,17 +17,26 @@ namespace Platformer2D
             var armController = new ArmController(starterGameData, inputController);
             var flipController = new FlipController(armController, starterGameData, inputController);            
             var shootController = new ShootController(inputController, animatorController, starterGameData, armController);
-            var barrelsInitialisator = new BarrelsInitialisator(starterGameData);
-            var hitController = new HitController(barrelsInitialisator, shootController);
+            var hitController = new HitController(shootController);
 
+            var barrelsInitialisator = new BarrelsInitialisator(starterGameData, hitController);
+            var enemiesInitialisator = new EnemiesInitialisator(gameData, starterGameData);
+            var healthBarsInitializator = new HealthBarsInitializator(starterGameData, gameData);
 
-            var enemiesPoolController = new EnemiesPoolController(gameData, starterGameData);
+            var enemiesPoolController = new EnemiesPoolController(enemiesInitialisator);
+
+            var barrelsController = new BarrelsController(barrelsInitialisator); 
             var enemiesController = new EnemiesController(enemiesPoolController, animatorController, starterGameData);
+
+            var healthBarPoolController = new HealthBarPoolController(healthBarsInitializator, enemiesController);
+            var hitableObjectInitializator = new HitableObjectsInitialisator(barrelsInitialisator, barrelsController, 
+                                                    enemiesInitialisator, enemiesController, hitController);
+
 
             var spawners = Object.FindObjectsOfType<EnemiesSpawner>();
             for (int i = 0; i < spawners.Length; i++)
             {
-                spawners[i].InitSpawner(enemiesPoolController);
+                spawners[i].InitSpawner(enemiesPoolController, healthBarPoolController);
                 controllersManager.Add(spawners[i]);
             }
 
@@ -41,7 +49,6 @@ namespace Platformer2D
             controllersManager.Add(flipController);
             controllersManager.Add(shootController);
             controllersManager.Add(hitController);
-            controllersManager.Add(enemiesPoolController);
             controllersManager.Add(enemiesController);
         }
     }

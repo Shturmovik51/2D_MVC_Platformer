@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Platformer2D
 {
-    public class BarrelView
+    public class BarrelView : IHitable
     {
         private Collider2D _collider;
         private Transform _barrelTransform;
@@ -33,7 +31,7 @@ namespace Platformer2D
                     if (hitRigidbody == _barrelRigidbody) return;
 
                     hitRigidbody.bodyType = RigidbodyType2D.Dynamic;
-                    //hitRigidbody.AddExplosionForce(200000, _barrelTransform.position, 10, 3,ForceMode2D.Impulse);
+                    //hitRigidbody.AddExplosionForce(200000, _barrelTransform.position, 10);
                     hitRigidbody.AddForce((hitRigidbody.transform.position - _barrelTransform.position).normalized * 30, ForceMode2D.Impulse);
                 }
             }

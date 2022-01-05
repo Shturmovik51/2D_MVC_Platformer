@@ -20,11 +20,13 @@ namespace Platformer2D
 
         private bool _isSpawn;
         private EnemiesPoolController _enemiesPoolController;
+        private HealthBarPoolController _healthBarPoolController;
         private float _currentInterval;
 
-        public void InitSpawner(EnemiesPoolController enemiesPoolController)
+        public void InitSpawner(EnemiesPoolController enemiesPoolController, HealthBarPoolController healthBarPoolController)
         {
             _enemiesPoolController = enemiesPoolController;
+            _healthBarPoolController = healthBarPoolController;
             _isSpawn = true;
         }
 
@@ -51,6 +53,9 @@ namespace Platformer2D
             }
 
             var enemy = _enemiesPoolController.ProvideZombie();
+            var healthbar = _healthBarPoolController.ProvideHealthBar();
+
+            enemy.view.InitHealthBar(healthbar);
             enemy.view.Transform.parent = null;
             enemy.view.Transform.position = _spawnPoint.position;
             enemy.view.SpriteRenderer.sortingOrder = Random.Range(0, 11);

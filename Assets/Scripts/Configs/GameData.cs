@@ -12,11 +12,14 @@ namespace Platformer2D
         [SerializeField] private InputKeysConfig _userInput;
         [SerializeField] private EnemyConfig _enemyConfig;
 
+        [SerializeField] PrefabsData _prefabsData;
+
         public SpriteAnimationsConfig PlayerAnimationsConfig => _playerAnimationsConfig;
         public SpriteAnimationsConfig ShootAnimationConfig => _shootAnimationConfig;
         public SpriteAnimationsConfig WaterAnimationConfig => _waterAnimationConfig;
         public SpriteAnimationsConfig EnemiesAnimationConfig => _enemiesAnimationConfig;
         public InputKeysConfig UserInput => _userInput;
         public EnemyConfig EnemyConfig => _enemyConfig;
+        public PrefabsData PrefabsData => _prefabsData;
     }
 }

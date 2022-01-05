@@ -1,16 +1,18 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Platformer2D
 {
-    public class EnemiesController: IInitializable, ICleanable, IFixedUpdatable, IController
+    public class EnemiesController: IInitializable, ICleanable, IUpdatable, IFixedUpdatable, IController, IDamagableObjectController
     {
+        public event Action<EnemyView, EnemyModel> OnEnemyDeath;
+
         private List<EnemyView> _activeEnemiesViews;
         private List<EnemyModel> _activeEnemiesModels;
         private EnemiesPoolController _enemiesPoolController;
         private SpriteAnimatorController _spriteAnimatorController;
         private Transform _playerTransform;
-        private AnimationType _animations;
 
         private float _agroCheckTimer = 1;
         private float _agroCheckCounter;
@@ -30,11 +32,21 @@ namespace Platformer2D
         public void Initialization()
         {
             _enemiesPoolController.OnSpawnEnemy += AddActiveEnemy;
+            OnEnemyDeath += _enemiesPoolController.ReturnEnemyToPool;
         }
 
         public void CleanUp()
         {
             _enemiesPoolController.OnSpawnEnemy -= AddActiveEnemy;
+            OnEnemyDeath -= _enemiesPoolController.ReturnEnemyToPool;
+        }
+
+        public void LocalUpdate(float deltaTime)
+        {
+            if (_activeEnemiesViews.Count == 0) return;
+
+            for (int i = 0; i < _activeEnemiesViews.Count; i++)
+                _activeEnemiesViews[i].SetHealthBarPosition();
         }
 
         public void LocalFixedUpdate(float fixedDeltatime)
@@ -67,7 +79,7 @@ namespace Platformer2D
             _activeEnemiesViews.Add(view);
             _activeEnemiesModels.Add(model);
 
-            var number = Random.Range(1, 3);
+            var number = UnityEngine.Random.Range(1, 3);
 
             switch (number)
             {               
@@ -84,7 +96,6 @@ namespace Platformer2D
 
         private void Move(float fixedDeltatime, int i)
         {
-
             if (_activeEnemiesViews[i].Transform.localScale.x > 0)
             {
                 _activeEnemiesViews[i].Rigidbody.velocity = Vector2.zero;
@@ -97,12 +108,10 @@ namespace Platformer2D
                 var direction = _activeEnemiesModels[i].MoveSpeed * fixedDeltatime * Vector2.left;
                 _activeEnemiesViews[i].Rigidbody.AddForce(direction, ForceMode2D.Impulse);
             }
-
         }
 
         private void Patrol(int i)
         {
-
             var enemyPosX = _activeEnemiesViews[i].Transform.position.x;
 
             if (enemyPosX < _activeEnemiesModels[i].LeftPatrolBorder.position.x && _activeEnemiesViews[i].Transform.localScale != _rightDir)
@@ -110,12 +119,10 @@ namespace Platformer2D
 
             if (enemyPosX > _activeEnemiesModels[i].RightPatrolBorder.position.x && _activeEnemiesViews[i].Transform.localScale != _leftDir)
                 _activeEnemiesViews[i].Transform.localScale = _leftDir;
-
         }
 
         private void Chasing(int i)
         {
-
             var enemyPosX = _activeEnemiesViews[i].Transform.position.x;
 
             if (enemyPosX < _playerTransform.position.x && _activeEnemiesViews[i].Transform.localScale != _rightDir)
@@ -123,19 +130,40 @@ namespace Platformer2D
 
             if (enemyPosX > _playerTransform.position.x && _activeEnemiesViews[i].Transform.localScale != _leftDir)
                 _activeEnemiesViews[i].Transform.localScale = _leftDir;
-
         }
-
 
         private void Agro(int i)
         {
-
             if (_activeEnemiesViews[i].AgroCheck() && !_activeEnemiesModels[i].IsOnChasing)
                 _activeEnemiesModels[i].SetChasingStatus(true);
             if (!_activeEnemiesViews[i].AgroCheck() && _activeEnemiesModels[i].IsOnChasing)
                 _activeEnemiesModels[i].SetChasingStatus(false);
-
-            Debug.Log(_activeEnemiesModels[i].IsOnChasing);
         }
+
+        public void GetDamage(Collider2D collider, int value)
+        {
+            for (int i = 0; i < _activeEnemiesViews.Count; i++)
+            {
+                if (_activeEnemiesViews[i].Collider == collider)
+                {
+                    _activeEnemiesModels[i].ZombieHealth.TakeDamage(value);
+                    _activeEnemiesViews[i].HealthBar.BarImage.fillAmount = _activeEnemiesModels[i].ZombieHealth.GetFillAmountValue();
+                    Debug.Log( _activeEnemiesViews[i].HealthBar.BarImage.fillAmount);
+
+                    if (_activeEnemiesModels[i].ZombieHealth.HP <= 0)
+                    {
+                        EnemyDeath(i);
+                    }
+                }
+            }
+        }
+
+        private void EnemyDeath(int i)
+        {
+            OnEnemyDeath?.Invoke(_activeEnemiesViews[i], _activeEnemiesModels[i]);
+
+            _activeEnemiesViews.Remove(_activeEnemiesViews[i]);
+            _activeEnemiesModels.Remove(_activeEnemiesModels[i]);
+        }        
     }
 }

@@ -3,41 +3,17 @@ using System.Collections.Generic;
 
 namespace Platformer2D
 {
-    public class EnemiesPoolController: IInitializable, ICleanable, IController
+    public class EnemiesPoolController
     {
         public event Action<EnemyView, EnemyModel> OnSpawnEnemy;
 
-        private int _enemiesCount;
         private List<IEnemyView> _enemyViews;
         private List<IEnemyModel> _enemyModels;
 
-        public EnemiesPoolController(GameData gameData, StarterGameData starterGameData)
+        public EnemiesPoolController(EnemiesInitialisator enemiesInitialisator)
         {
-            _enemiesCount = starterGameData.ZombiesCountInCollection;
-            _enemyViews = new List<IEnemyView>(_enemiesCount);
-            _enemyModels = new List<IEnemyModel>(_enemiesCount);
-
-            for (int i = 0; i < _enemiesCount; i++)
-            {
-                var enemyFactory = new EnemyFactory(gameData);
-
-                var enemy = enemyFactory.GetZombieView();
-                enemy.transform.parent = starterGameData.Enemies;
-                enemy.gameObject.SetActive(false);
-                _enemyViews.Add(enemy);
-
-                _enemyModels.Add(enemyFactory.GetZombieModel());
-            }
-        }
-
-        public void Initialization()
-        {
-
-        }
-
-        public void CleanUp()
-        {
-
+            _enemyViews = enemiesInitialisator.GetEnemies().views;
+            _enemyModels = enemiesInitialisator.GetEnemies().models;            
         }
 
         public (EnemyView view, EnemyModel model) ProvideZombie()
@@ -55,6 +31,9 @@ namespace Platformer2D
 
         public void ReturnEnemyToPool(EnemyView view, EnemyModel model)
         {
+            view.gameObject.SetActive(false);
+            model.ZombieHealth.ResetHealth();
+
             _enemyViews.Add(view);
             _enemyModels.Add(model);
         }

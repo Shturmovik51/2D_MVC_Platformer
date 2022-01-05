@@ -16,7 +16,7 @@ namespace Platformer2D
         [SerializeField] private Transform _waterContainer;
         [SerializeField] private Transform _barrelsContainer;
 
-        public float AnimationSpeed => _animationSpeed;
+        public float AnimationSpeed { get => _animationSpeed; set => _animationSpeed = value; }/*=> _animationSpeed;*/
         public float PlayerMoveSpeed => _playerMoveSpeed;
         public int ZombiesCountInCollection => _zombiesCountInCollection;
         public PlayerView PlayerView => _playerView;

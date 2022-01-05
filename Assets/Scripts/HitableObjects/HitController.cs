@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,18 +5,21 @@ namespace Platformer2D
 {
     public class HitController : IInitializable, ICleanable, IController
     {
-        private Dictionary<Collider2D, IDamagable> _hitObjects;
+        private Dictionary<Collider2D, IDamagableObjectController> _hitObjects;
         private ShootController _shootController;
 
-        public HitController(BarrelsInitialisator barrelsInitialisator, ShootController shootController)
+        public HitController(ShootController shootController)
         {
-            _hitObjects = new Dictionary<Collider2D, IDamagable>();
-            _shootController = shootController;
-
-            foreach (var keyValueParams in barrelsInitialisator.GetBarrels())
-                _hitObjects.Add(keyValueParams.Key, keyValueParams.Value);            
+            _hitObjects = new Dictionary<Collider2D, IDamagableObjectController>();
+            _shootController = shootController;         
         }
-                
+
+        public void AddHitableObject(Collider2D collider, IDamagableObjectController objectController)
+        {
+            _hitObjects.Add(collider, objectController);
+        }
+            
+        
         public void Initialization()
         {
             _shootController.OnHitSomeThing += CheckHitedObject;

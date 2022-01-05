@@ -17,6 +17,7 @@ namespace Platformer2D
                 explosionDir.y += upwardsModifier;
                 explosionDir.Normalize();
             }
+            //rb.AddForce();
 
             rb.AddForce(Mathf.Lerp(0, explosionForce, (1 - explosionDistance)) * explosionDir, mode);
         }

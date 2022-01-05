@@ -23,17 +23,9 @@ namespace Platformer2D
             _allAnimations.AddRange(effectsAnims);
             _allAnimations.AddRange(enemiesAnims);
 
-
-            int waterAnimationsCounter = 0; // todo переделать в фабрике
-            var waterSpriteRenderers = starterGameData.WaterContainer.GetComponentsInChildren<SpriteRenderer>();
-
-            for (int i = 0; i < waterSpriteRenderers.Length; i++)
+            for (int i = 0; i < waterAnim.waterAnimstions.Count; i++)
             {
-                _activeAnimations.Add(waterSpriteRenderers[i], waterAnim[i]);
-                waterAnimationsCounter++;
-
-                if (waterAnimationsCounter == waterAnim.Count)
-                    waterAnimationsCounter = 0;
+                _activeAnimations.Add(waterAnim.waterSpriteRenderers[i], waterAnim.waterAnimstions[i]); 
             }
         }
 

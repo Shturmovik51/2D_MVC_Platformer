@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace Platformer2D
 {
-    public class BarrelsController : IDamagable
+    public class BarrelsController : IDamagableObjectController
     {
         private List<BarrelModel> _barrelModels;
         private List<BarrelView> _barrelViews;
 
-        public BarrelsController(List<BarrelModel> barrelModels, List<BarrelView> barrelViews)
+        public BarrelsController(BarrelsInitialisator barrelsInitialisator)
         {
-            _barrelModels = barrelModels;
-            _barrelViews = barrelViews;
+            _barrelModels = barrelsInitialisator.GetBarrels().models;
+            _barrelViews = barrelsInitialisator.GetBarrels().views;
         }
 
         public void GetDamage(Collider2D collider, int value)

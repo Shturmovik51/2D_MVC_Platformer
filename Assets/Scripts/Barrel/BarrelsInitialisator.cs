@@ -6,15 +6,13 @@ namespace Platformer2D
     public class BarrelsInitialisator
     {
         private SpriteRenderer[] _barrelsObjects;
-        private Dictionary<Collider2D, IDamagable> _barrels;
         private List<BarrelModel> _barrelModels;
         private List<BarrelView> _barrelViews;
         private int _barrelHealth = 5;
 
-        public BarrelsInitialisator(StarterGameData starterGameData)
+        public BarrelsInitialisator(StarterGameData starterGameData, HitController hitController)
         {
             _barrelsObjects = starterGameData.BarrelsContainer.GetComponentsInChildren<SpriteRenderer>();
-            _barrels = new Dictionary<Collider2D, IDamagable>(_barrelsObjects.Length);
             _barrelModels = new List<BarrelModel>(_barrelsObjects.Length);
             _barrelViews = new List<BarrelView>(_barrelsObjects.Length);
 
@@ -29,19 +27,14 @@ namespace Platformer2D
 
                 _barrelModels.Add(barrelModel);
                 _barrelViews.Add(barrelView);
-            }
-
-            var barrelsController = new BarrelsController(_barrelModels, _barrelViews);
-
-            for (int i = 0; i < _barrelsObjects.Length; i++)
-            {
-                _barrels.Add(_barrelsObjects[i].GetComponent<Collider2D>(), barrelsController);
-            }
+            }  
+            
+            
         }
 
-        public Dictionary<Collider2D, IDamagable> GetBarrels()
+        public (List<BarrelModel> models, List<BarrelView> views) GetBarrels()
         {
-            return _barrels;
+            return (_barrelModels, _barrelViews);
         }
     }
 }

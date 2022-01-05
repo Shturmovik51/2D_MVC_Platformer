@@ -12,6 +12,7 @@ namespace Platformer2D
         private SpriteRenderer _shootEffect;
         private ArmController _armController;
         private Transform _shootRayStartPosition;
+        private LayerMask _layerMask = LayerMask.GetMask("Destroible");
         private bool _isReadyToShoot = true;
         private float _delayTime = 0.1f;
         private float _timer;
@@ -57,7 +58,7 @@ namespace Platformer2D
             _timer = _delayTime;
             _animatorController.StartAnimation(_shootEffect, AnimationType.Shoot);
 
-            var collider = Physics2D.Raycast(_shootRayStartPosition.position, _shootRayStartPosition.right, _shootDistance).collider;
+            var collider = Physics2D.Raycast(_shootRayStartPosition.position, _shootRayStartPosition.right, _shootDistance, _layerMask).collider;
 
             if(collider != null)
                 OnHitSomeThing?.Invoke(collider, _shootForse);
