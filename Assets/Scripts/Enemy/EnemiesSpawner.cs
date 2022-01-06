@@ -53,9 +53,9 @@ namespace Platformer2D
             }
 
             var enemy = _enemiesPoolController.ProvideZombie();
-            var healthbar = _healthBarPoolController.ProvideHealthBar();
+            var healthBar = _healthBarPoolController.ProvideHealthBar();
 
-            enemy.view.InitHealthBar(healthbar);
+            enemy.view.InitHealthBar(healthBar);
             enemy.view.Transform.parent = null;
             enemy.view.Transform.position = _spawnPoint.position;
             enemy.view.SpriteRenderer.sortingOrder = Random.Range(0, 11);

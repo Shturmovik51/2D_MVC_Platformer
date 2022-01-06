@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Platformer2D
 {
@@ -30,6 +31,7 @@ namespace Platformer2D
                 var healthBar = _healthBars[0];
                 _healthBars.Remove(healthBar);
                 healthBar.HealhBarObject.gameObject.SetActive(true);
+                healthBar.BarImage.fillAmount = 1;
 
                 return healthBar;
             }
@@ -43,8 +45,7 @@ namespace Platformer2D
         {
             var healthBar = view.HealthBar;
             healthBar.HealhBarObject.gameObject.SetActive(false);
-
-            _healthBars.Add(view.HealthBar);
+            _healthBars.Add(healthBar);
         }
     }
 }

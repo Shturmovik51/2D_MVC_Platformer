@@ -50,6 +50,7 @@ namespace Platformer2D
             controllersManager.Add(shootController);
             controllersManager.Add(hitController);
             controllersManager.Add(enemiesController);
+            controllersManager.Add(healthBarPoolController);
         }
     }
 }

@@ -98,13 +98,17 @@ namespace Platformer2D
         {
             if (_activeEnemiesViews[i].Transform.localScale.x > 0)
             {
-                _activeEnemiesViews[i].Rigidbody.velocity = Vector2.zero;
+                var enemyVelosity = _activeEnemiesViews[i].Rigidbody.velocity;
+                enemyVelosity.x = 0;
+                _activeEnemiesViews[i].Rigidbody.velocity = enemyVelosity;
                 var direction = _activeEnemiesModels[i].MoveSpeed * fixedDeltatime * Vector2.right;
                 _activeEnemiesViews[i].Rigidbody.AddForce(direction, ForceMode2D.Impulse);
             }
             if (_activeEnemiesViews[i].Transform.localScale.x < 0)
             {
-                _activeEnemiesViews[i].Rigidbody.velocity = Vector2.zero;
+                var enemyVelosity = _activeEnemiesViews[i].Rigidbody.velocity;
+                enemyVelosity.x = 0;
+                _activeEnemiesViews[i].Rigidbody.velocity = enemyVelosity;
                 var direction = _activeEnemiesModels[i].MoveSpeed * fixedDeltatime * Vector2.left;
                 _activeEnemiesViews[i].Rigidbody.AddForce(direction, ForceMode2D.Impulse);
             }
@@ -124,6 +128,8 @@ namespace Platformer2D
         private void Chasing(int i)
         {
             var enemyPosX = _activeEnemiesViews[i].Transform.position.x;
+
+           // if(enemyPosX == Mathf.Round(_playerTransform.position.x)) // добавить ожидание
 
             if (enemyPosX < _playerTransform.position.x && _activeEnemiesViews[i].Transform.localScale != _rightDir)
                 _activeEnemiesViews[i].Transform.localScale = _rightDir;
@@ -148,7 +154,6 @@ namespace Platformer2D
                 {
                     _activeEnemiesModels[i].ZombieHealth.TakeDamage(value);
                     _activeEnemiesViews[i].HealthBar.BarImage.fillAmount = _activeEnemiesModels[i].ZombieHealth.GetFillAmountValue();
-                    Debug.Log( _activeEnemiesViews[i].HealthBar.BarImage.fillAmount);
 
                     if (_activeEnemiesModels[i].ZombieHealth.HP <= 0)
                     {
