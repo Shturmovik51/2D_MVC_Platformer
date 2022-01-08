@@ -12,7 +12,7 @@ namespace Platformer2D
         private SpriteRenderer _shootEffect;
         private ArmController _armController;
         private Transform _shootRayStartPosition;
-        private LayerMask _layerMask = LayerMask.GetMask("Destroible");
+        private LayerMask _layerMask = 1<<7|1<<9;   // 7 - Enemy, 9 - Barrel
         private bool _isReadyToShoot = true;
         private float _delayTime = 0.1f;
         private float _timer;

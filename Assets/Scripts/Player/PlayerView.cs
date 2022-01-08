@@ -9,9 +9,9 @@ namespace Platformer2D
         [SerializeField] private Collider2D _collider;
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Transform _groundDetector;
-        [SerializeField] private LayerMask _groundMask;
         [SerializeField] private SpriteRenderer _shootEffect;
 
+        private LayerMask _groundMask = 1<<3|1<<7|1<<9;  // 3 - Ground, 7 - Enemy, 9 - Barrel
         private float _groundDetectorRadius = 0.4f;
 
         public Transform Transform => _transform;

@@ -9,7 +9,6 @@ namespace Platformer2D
         private InputController _inputController;
         private Vector3 _mousePos;
         private PlayerView _playerView;
-        private Transform _shootPosition;
 
         private bool _isAim;
 

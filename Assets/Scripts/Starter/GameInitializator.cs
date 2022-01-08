@@ -12,7 +12,7 @@ namespace Platformer2D
             var animatorController = new SpriteAnimatorController(animationsInitialisator, starterGameData);
             var cameraPositionController = new CameraPositionController(camera, starterGameData);
             var stateController = new StateController(animatorController);
-            var playerModel = new PlayerModel(starterGameData);
+            var playerModel = new PlayerModel(gameData);
             var playerController = new PlayerController(starterGameData, inputController, stateController, playerModel);
             var armController = new ArmController(starterGameData, inputController);
             var flipController = new FlipController(armController, starterGameData, inputController);            

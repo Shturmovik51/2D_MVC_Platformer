@@ -13,7 +13,8 @@ namespace Platformer2D
         public EnemyModel(GameData gameData)
         {
             ZombieHealth = new Health(gameData.EnemyConfig.EnemyMaxHealth, gameData.EnemyConfig.EnemyMaxHealth);
-            MoveSpeed = Random.Range(40f, 50f);
+            MoveSpeed = Random.Range(gameData.EnemyConfig.EnemyMinMoveSpeed, gameData.EnemyConfig.EnemyMaxMoveSpeed);
+            
         }
 
         public void SetPatrolZone(Transform left, Transform right)

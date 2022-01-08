@@ -18,5 +18,6 @@ MonoBehaviour:
   _enemiesAnimationConfig: {fileID: 11400000, guid: 90cb8f4d06cfdf942840d8ea7108a9ca, type: 2}
   _userInput: {fileID: 11400000, guid: b0a7ab72630137c4f890d4cd8967bf2e, type: 2}
   _enemyConfig: {fileID: 11400000, guid: e9564755f6756b841bba7f288b4a7491, type: 2}
+  _playerConfig: {fileID: 11400000, guid: 604e78cbacee12747aad98157e7fd52b, type: 2}
   _prefabsData:
     _healthBarPrefab: {fileID: 8042765340575056231, guid: 8cbee67a5564d0a4ca474b212257d182, type: 3}

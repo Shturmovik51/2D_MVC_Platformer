@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5103439501187873991}
   - component: {fileID: 6528889863668076781}
   - component: {fileID: 8188606665479592825}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: ZombieG
   m_TagString: Untagged
   m_Icon: {fileID: 0}

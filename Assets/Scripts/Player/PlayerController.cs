@@ -77,7 +77,7 @@ namespace Platformer2D
                 _stateController.SetJumpState(_playerView, _playerModel);
             }
 
-            _playerView.Rigidbody.AddForce(400f * Time.fixedDeltaTime * Vector2.up, ForceMode2D.Impulse);            
+            _playerView.Rigidbody.AddForce(_playerModel.JumpForce * Time.fixedDeltaTime * Vector2.up, ForceMode2D.Impulse);            
         }
     }
 }

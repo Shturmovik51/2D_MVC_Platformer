@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Platformer2D
 {
@@ -21,7 +19,7 @@ namespace Platformer2D
                 var enemyFactory = new EnemyFactory(gameData);
 
                 var enemy = enemyFactory.GetZombieView();
-                enemy.transform.parent = starterGameData.Enemies;
+                enemy.transform.parent = starterGameData.EnemiesContainer;
                 enemy.gameObject.SetActive(false);
                 _enemyViews.Add(enemy);
 
