@@ -100,7 +100,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -122,9 +122,12 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 2436670032279168319}
   _collider: {fileID: 8188606665479592825}
   _rigidbody: {fileID: 5103439501187873991}
-  _groundMask:
+  _agroMask:
     serializedVersion: 2
     m_Bits: 256
+  _jumpMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!70 &8188606665479592825
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -8,7 +8,8 @@ namespace Platformer2D
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private Collider2D _collider;
         [SerializeField] private Rigidbody2D _rigidbody;
-        [SerializeField] private LayerMask _groundMask;
+        [SerializeField] private LayerMask _agroMask;
+        [SerializeField] private LayerMask _jumpMask;
 
         private Camera _camera;
         private float _targetDetectorRadius = 6;
@@ -26,7 +27,7 @@ namespace Platformer2D
 
         public bool AgroCheck()
         {
-            return Physics2D.OverlapCircle(_transform.position, _targetDetectorRadius, _groundMask);
+            return Physics2D.OverlapCircle(_transform.position, _targetDetectorRadius, _agroMask);
         }
 
         public void SetHealthBarPosition()
@@ -35,6 +36,14 @@ namespace Platformer2D
                 _camera = Camera.main;
 
             HealthBar.HealhBarObject.position = _camera.WorldToScreenPoint(_transform.position + (Vector3.up));
+        }
+
+        public bool ObstacleDetector()
+        {
+            if (_transform.localScale.x > 0)
+                return (Physics2D.Raycast(transform.position, Vector2.right, 1, _jumpMask));
+            else
+                return (Physics2D.Raycast(transform.position, Vector2.left, 1, _jumpMask));
         }
     }
 }

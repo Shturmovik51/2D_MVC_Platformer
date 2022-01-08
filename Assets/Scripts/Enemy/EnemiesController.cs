@@ -59,6 +59,7 @@ namespace Platformer2D
                 for (int i = 0; i < _activeEnemiesViews.Count; i++)
                 {
                     Agro(i);
+                    Jump(i);
                 }
                 _agroCheckCounter += _agroCheckTimer;
             }
@@ -169,6 +170,30 @@ namespace Platformer2D
 
             _activeEnemiesViews.Remove(_activeEnemiesViews[i]);
             _activeEnemiesModels.Remove(_activeEnemiesModels[i]);
-        }        
+        }
+
+        private void Jump(int i)
+        {
+            if (_activeEnemiesViews[i].ObstacleDetector())
+            {
+                if (_activeEnemiesModels[i].IsOnChasing)
+                {
+                    if (_activeEnemiesViews[i].Transform.position.y < _playerTransform.position.y)
+                        AddJumpForce();
+
+                }
+                else
+                {
+                    if (_activeEnemiesViews[i].Transform.position.y < _activeEnemiesModels[i].LeftPatrolBorder.position.y ||
+                        _activeEnemiesViews[i].Transform.position.y < _activeEnemiesModels[i].RightPatrolBorder.position.y)
+                        AddJumpForce();
+                }
+            } 
+            
+            void AddJumpForce()
+            {
+                _activeEnemiesViews[i].Rigidbody.AddForce(500 * Time.fixedDeltaTime * Vector2.up, ForceMode2D.Impulse);
+            }
+        }
     }
 }

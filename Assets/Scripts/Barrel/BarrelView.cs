@@ -20,7 +20,7 @@ namespace Platformer2D
         public void Explosion()
         {
             Collider2D[] colliders = new Collider2D[60];
-            Physics2D.OverlapCircleNonAlloc(_barrelTransform.position, 3, colliders);
+            Physics2D.OverlapCircleNonAlloc(_barrelTransform.position, 3, colliders);            
 
             foreach (var hit in colliders)
             {
@@ -30,9 +30,14 @@ namespace Platformer2D
                 {
                     if (hitRigidbody == _barrelRigidbody) return;
 
+                    if (hit.gameObject.layer == 8)
+                        continue;
+                    else
+                        hit.gameObject.layer = 6; 
+
                     hitRigidbody.bodyType = RigidbodyType2D.Dynamic;
                     //hitRigidbody.AddExplosionForce(200000, _barrelTransform.position, 10);
-                    hitRigidbody.AddForce((hitRigidbody.transform.position - _barrelTransform.position).normalized * 30, ForceMode2D.Impulse);
+                    hitRigidbody.AddForce((hitRigidbody.transform.position - _barrelTransform.position).normalized * 15, ForceMode2D.Impulse);
                 }
             }
         }
