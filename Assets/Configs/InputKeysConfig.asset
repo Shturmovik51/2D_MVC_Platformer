@@ -17,3 +17,4 @@ MonoBehaviour:
   _save: 286
   _load: 290
   _jump: 32
+  _down: 115

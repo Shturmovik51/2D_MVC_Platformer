@@ -10,7 +10,7 @@ namespace Platformer2D
         public event Action<bool> OnClickAimButton;
         public event Action OnClickSave;
         public event Action OnClickLoad;
-        public event Action OnClickJump;
+        public event Action<bool> OnClickJump;
 
         private readonly InputKeys _inputKeys;
         private readonly InputAxis _inputAxis;
@@ -18,9 +18,7 @@ namespace Platformer2D
         private readonly InputMousePosition _inputMousePosition;
 
         private Vector3 _mousePosition;
-
         public Vector3 MousePosition => _mousePosition;
-
         public InputController(GameData gameData)
         {
             _inputKeys = new InputKeys();

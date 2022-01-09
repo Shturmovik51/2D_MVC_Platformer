@@ -708,10 +708,10 @@ DistanceJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
+  m_Anchor: {x: 0, y: 0.24}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.7206249
+  m_Distance: 0.480937
   m_MaxDistanceOnly: 0
 --- !u!1 &4915174733870161609
 GameObject:

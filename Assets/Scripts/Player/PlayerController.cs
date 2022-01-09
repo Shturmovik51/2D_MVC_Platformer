@@ -14,6 +14,9 @@ namespace Platformer2D
         private Transform _reviewPosition;
         private float _groundDetectionDelayTimer = 0.1f;
         private float _groundDetectionDelayTimerCountDoun;
+        private float _ignoreGroundLayerDelayTime = 0.4f;
+        private float _ignoreGroundLayerDelayTimerCountDoun;
+        private bool _isGroundLayerIgnored;
 
         public PlayerController(StarterGameData starterGameData, InputController inputController, StateController stateController, 
                     PlayerModel playerModel)
@@ -32,6 +35,7 @@ namespace Platformer2D
 
             _stateController.SetIdleState(_playerView, _playerModel);
             _groundDetectionDelayTimerCountDoun = _groundDetectionDelayTimer;
+            _ignoreGroundLayerDelayTimerCountDoun = _ignoreGroundLayerDelayTime;
         }
 
         public void CleanUp()
@@ -53,6 +57,8 @@ namespace Platformer2D
                     _playerView.SetGroundDetectionDelayStatus(false);
                 }
             }
+
+            GroundLayerIgnoreTimer(deltaTime);
 
             if (_playerView.Transform.position.y < -8)
                 TeleportPlayer();
@@ -92,7 +98,7 @@ namespace Platformer2D
             
         }
 
-        private void Jump()
+        private void Jump(bool isUpJump)
         {
             if (!_playerView.IsGrounded())
                 return;
@@ -101,10 +107,23 @@ namespace Platformer2D
             {
                 _playerView.SetGroundDetectionDelayStatus(true);
                 _stateController.SetJumpState(_playerView, _playerModel);
+
+                if (isUpJump)
+                    _playerView.Rigidbody.AddForce(_playerModel.JumpForce * Time.fixedDeltaTime * Vector2.up, ForceMode2D.Impulse);
+                else
+                {
+                    Physics2D.IgnoreLayerCollision(8, 3, true);
+                    _isGroundLayerIgnored = true;
+                }
+
             }
 
-            _playerView.Rigidbody.AddForce(_playerModel.JumpForce * Time.fixedDeltaTime * Vector2.up, ForceMode2D.Impulse);            
         }     
+
+        private void JumpDown()
+        {
+
+        }
         
         private void SetReviewPosition(Transform transform)
         {
@@ -115,6 +134,21 @@ namespace Platformer2D
         {
             _playerView.Rigidbody.velocity = Vector2.zero;
             _playerView.Transform.position = _reviewPosition.position;
+        }
+
+        private void GroundLayerIgnoreTimer(float deltaTime)
+        {
+            if (_isGroundLayerIgnored)
+            {
+                _ignoreGroundLayerDelayTimerCountDoun -= deltaTime;
+
+                if (_ignoreGroundLayerDelayTimerCountDoun <= 0)
+                {
+                    _ignoreGroundLayerDelayTimerCountDoun = _ignoreGroundLayerDelayTime;
+                    _isGroundLayerIgnored = false;
+                    Physics2D.IgnoreLayerCollision(8, 3, false);
+                }
+            }
         }
     }
 }
