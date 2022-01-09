@@ -9,6 +9,7 @@ namespace Platformer2D
         Shoot = 4,
         Water = 5,
         GreenEnemyWalk = 6,
-        BlueEnemyWalk = 7
+        BlueEnemyWalk = 7,
+        Halo = 8
     }
 }

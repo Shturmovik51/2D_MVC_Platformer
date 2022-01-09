@@ -14,6 +14,7 @@ namespace Platformer2D
         [SerializeField] private Transform _arm;
         [SerializeField] private Transform _waterContainer;
         [SerializeField] private Transform _barrelsContainer;
+        [SerializeField] private Transform _savePointsContainer;
 
         public float AnimationSpeed { get => _animationSpeed; set => _animationSpeed = value; }
         public int ZombiesCountInCollection => _zombiesCountInCollection;
@@ -22,6 +23,7 @@ namespace Platformer2D
         public Transform Arm => _arm;
         public Transform BarrelsContainer => _barrelsContainer;
         public Transform EnemiesContainer => _enemiesContainer;
+        public Transform SavePointsContainer => _savePointsContainer;
 
 
     }

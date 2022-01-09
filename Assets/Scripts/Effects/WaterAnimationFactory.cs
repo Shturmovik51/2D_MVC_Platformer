@@ -14,10 +14,10 @@ namespace Platformer2D
         {
             _waterSprites = gameData.WaterAnimationConfig.SpritesSet;
             _animationSpeed = starterGameData.AnimationSpeed;
-            
-            _waterAnimations = new List<Animation>(GetSprites(AnimationType.Water).Count);
-
             _waterSpriteRenderers = starterGameData.WaterContainer.GetComponentsInChildren<SpriteRenderer>();
+            
+            _waterAnimations = new List<Animation>(_waterSpriteRenderers.Length);
+
 
             for (int i = 0; i < _waterSpriteRenderers.Length; i++)
             {

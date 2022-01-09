@@ -3,13 +3,17 @@ using UnityEngine;
 
 namespace Platformer2D
 {
-    public class PlayerController : IInitializable, ICleanable, IFixedUpdatable, IController
+    public class PlayerController : IInitializable, ICleanable, IUpdatable, IFixedUpdatable, IController
     {
         private PlayerView _playerView;
         private InputController _inputController;
         private StateController _stateController;
         private PlayerModel _playerModel;
         private float _moveStep;
+
+        private Transform _reviewPosition;
+        private float _groundDetectionDelayTimer = 0.1f;
+        private float _groundDetectionDelayTimerCountDoun;
 
         public PlayerController(StarterGameData starterGameData, InputController inputController, StateController stateController, 
                     PlayerModel playerModel)
@@ -24,13 +28,34 @@ namespace Platformer2D
         {
             _inputController.OnHorizontalInput += Move;
             _inputController.OnClickJump += Jump;
+            _playerView.OnSetSavePoint += SetReviewPosition;
+
             _stateController.SetIdleState(_playerView, _playerModel);
+            _groundDetectionDelayTimerCountDoun = _groundDetectionDelayTimer;
         }
 
         public void CleanUp()
         {
             _inputController.OnHorizontalInput -= Move;
             _inputController.OnClickJump -= Jump;
+            _playerView.OnSetSavePoint -= SetReviewPosition;
+        }
+
+        public void LocalUpdate(float deltaTime)
+        {
+            if (_playerView.IsGroundDetectionDelay)
+            {
+                _groundDetectionDelayTimerCountDoun -= deltaTime;
+
+                if(_groundDetectionDelayTimerCountDoun <= 0)
+                {
+                    _groundDetectionDelayTimerCountDoun = _groundDetectionDelayTimer;
+                    _playerView.SetGroundDetectionDelayStatus(false);
+                }
+            }
+
+            if (_playerView.Transform.position.y < -8)
+                TeleportPlayer();
         }
 
         public void LocalFixedUpdate(float fixedDeltatime)
@@ -50,7 +75,7 @@ namespace Platformer2D
         {
             _moveStep = step;
 
-            if (_moveStep == Mathf.Round(0) && !_playerModel.IsStay && _playerView.Rigidbody.velocity.y == Mathf.Round(0) && _playerView.IsGrounded())
+            if (_moveStep == Mathf.Round(0) && !_playerModel.IsStay && _playerView.IsGrounded())
             {
                 _stateController.SetIdleState(_playerView, _playerModel);
 
@@ -59,7 +84,7 @@ namespace Platformer2D
                 _playerView.Rigidbody.velocity = velocity;
             }
 
-            if (_moveStep != 0 && !_playerModel.IsRun && _playerView.Rigidbody.velocity.y == Mathf.Round(0) && _playerView.IsGrounded())
+            if (_moveStep != 0 && !_playerModel.IsRun && _playerView.IsGrounded())
             {
                 _stateController.SetRunState(_playerView, _playerModel);                
             }
@@ -74,10 +99,22 @@ namespace Platformer2D
 
             if (!_playerModel.IsJump)
             {
+                _playerView.SetGroundDetectionDelayStatus(true);
                 _stateController.SetJumpState(_playerView, _playerModel);
             }
 
             _playerView.Rigidbody.AddForce(_playerModel.JumpForce * Time.fixedDeltaTime * Vector2.up, ForceMode2D.Impulse);            
+        }     
+        
+        private void SetReviewPosition(Transform transform)
+        {
+            _reviewPosition = transform;
+        }
+
+        private void TeleportPlayer()
+        {
+            _playerView.Rigidbody.velocity = Vector2.zero;
+            _playerView.Transform.position = _reviewPosition.position;
         }
     }
 }

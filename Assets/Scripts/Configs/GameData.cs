@@ -9,6 +9,7 @@ namespace Platformer2D
         [SerializeField] private SpriteAnimationsConfig _shootAnimationConfig;
         [SerializeField] private SpriteAnimationsConfig _waterAnimationConfig;
         [SerializeField] private SpriteAnimationsConfig _enemiesAnimationConfig;
+        [SerializeField] private SpriteAnimationsConfig _haloAnimationConfig;
         [SerializeField] private InputKeysConfig _userInput;
         [SerializeField] private EnemyConfig _enemyConfig;
         [SerializeField] private PlayerConfig _playerConfig;
@@ -18,6 +19,7 @@ namespace Platformer2D
         public SpriteAnimationsConfig ShootAnimationConfig => _shootAnimationConfig;
         public SpriteAnimationsConfig WaterAnimationConfig => _waterAnimationConfig;
         public SpriteAnimationsConfig EnemiesAnimationConfig => _enemiesAnimationConfig;
+        public SpriteAnimationsConfig HaloAnimationConfig => _haloAnimationConfig;
         public InputKeysConfig UserInput => _userInput;
         public EnemyConfig EnemyConfig => _enemyConfig;
         public PlayerConfig PlayerConfig => _playerConfig;

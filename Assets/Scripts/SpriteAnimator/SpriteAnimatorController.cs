@@ -18,6 +18,7 @@ namespace Platformer2D
             var effectsAnims = animationsInitializator.EffectsAnimationFactory.GetEffectsAnimations();
             var waterAnim = animationsInitializator.WaterAnimationFactory.GetWaterAnimations();
             var enemiesAnims = animationsInitializator.EnemiesAnimationsFactory.GetEnemiesAnimations();
+            var haloAnim = animationsInitializator.HaloAnimationsFactoty.GetHaloAnimations();
 
             _allAnimations.AddRange(playerAnims);
             _allAnimations.AddRange(effectsAnims);
@@ -26,6 +27,11 @@ namespace Platformer2D
             for (int i = 0; i < waterAnim.waterAnimstions.Count; i++)
             {
                 _activeAnimations.Add(waterAnim.waterSpriteRenderers[i], waterAnim.waterAnimstions[i]); 
+            }
+
+            for (int i = 0; i < haloAnim.haloAnimstions.Count; i++)
+            {
+                _activeAnimations.Add(haloAnim.haloSpriteRenderers[i], haloAnim.haloAnimstions[i]);
             }
         }
 

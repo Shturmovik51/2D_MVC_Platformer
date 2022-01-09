@@ -6,6 +6,7 @@ namespace Platformer2D
         public WaterAnimationFactory WaterAnimationFactory { get; }
         public EffectsAnimationsFactory EffectsAnimationFactory { get; }
         public EnemyAnimationFactory EnemiesAnimationsFactory { get; }
+        public HaloAnimationsFactoty HaloAnimationsFactoty { get; }
 
         public AnimationsInitializator(GameData gameData, StarterGameData starterGameData)
         {
@@ -13,6 +14,7 @@ namespace Platformer2D
             WaterAnimationFactory = new WaterAnimationFactory(gameData, starterGameData);
             EffectsAnimationFactory = new EffectsAnimationsFactory(gameData, starterGameData);
             EnemiesAnimationsFactory = new EnemyAnimationFactory(gameData, starterGameData);
+            HaloAnimationsFactoty = new HaloAnimationsFactoty(gameData, starterGameData);
         }
     }
 }
