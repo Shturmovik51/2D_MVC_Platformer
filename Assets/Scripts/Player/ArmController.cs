@@ -16,9 +16,9 @@ namespace Platformer2D
         public bool IsAim => _isAim;
         public ArmController(StarterGameData starterGameData, InputController inputController)
         {
-            _arm = starterGameData.Arm;
             _inputController = inputController;
             _playerView = starterGameData.PlayerView;
+            _arm = _playerView.Arm;
         }
 
         public void Initialization()

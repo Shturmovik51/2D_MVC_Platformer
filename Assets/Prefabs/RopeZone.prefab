@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4915174731956531616}
   - component: {fileID: 4915174731956531622}
   - component: {fileID: 4915174731956531617}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Chain (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4915174732118023507}
   - component: {fileID: 4915174732118023506}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 4915174732188344810}
   - component: {fileID: 4915174732188344811}
   - component: {fileID: 4915174732188344808}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Chain (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 4915174732360733248}
   - component: {fileID: 4915174732360733251}
   - component: {fileID: 4915174732360733249}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RopeZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 4915174732707443361}
   - component: {fileID: 4915174732707443363}
   - component: {fileID: 4915174732707443360}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,7 +517,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4915174732714729013}
   - component: {fileID: 4915174732714729012}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -601,7 +601,7 @@ GameObject:
   - component: {fileID: 4915174733285121961}
   - component: {fileID: 4915174733285121967}
   - component: {fileID: 4915174733285121966}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Chain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -723,7 +723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4915174733870161608}
   - component: {fileID: 4915174733870161611}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Rope
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,7 +12,7 @@ namespace Platformer2D
         private float _moveStep;
 
         private Transform _reviewPosition;
-        private float _groundDetectionDelayTimer = 0.1f;
+        private float _groundDetectionDelayTimer = 0.4f;
         private float _groundDetectionDelayTimerCountDoun;
         private float _ignoreGroundLayerDelayTime = 0.4f;
         private float _ignoreGroundLayerDelayTimerCountDoun;
@@ -24,7 +24,7 @@ namespace Platformer2D
             _playerView = starterGameData.PlayerView;
             _inputController = inputController;
             _stateController = stateController;
-            _playerModel = playerModel;
+            _playerModel = playerModel;            
         }
 
         public void Initialization()
@@ -115,15 +115,8 @@ namespace Platformer2D
                     Physics2D.IgnoreLayerCollision(8, 3, true);
                     _isGroundLayerIgnored = true;
                 }
-
             }
-
-        }     
-
-        private void JumpDown()
-        {
-
-        }
+        }   
         
         private void SetReviewPosition(Transform transform)
         {

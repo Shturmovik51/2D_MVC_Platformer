@@ -14,7 +14,7 @@ namespace Platformer2D
             _controllersManager = new ControllersManager();
             _gameData = (GameData) Resources.Load("GameData");
 
-            new GameInitializator(_controllersManager, _gameData, _starterGameData);
+            new GameInitializator(_controllersManager, _gameData, _starterGameData, this);
 
             _controllersManager.Initialization();
         }
