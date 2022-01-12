@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Platformer2D
@@ -36,6 +35,7 @@ namespace Platformer2D
             _stateController.SetIdleState(_playerView, _playerModel);
             _groundDetectionDelayTimerCountDoun = _groundDetectionDelayTimer;
             _ignoreGroundLayerDelayTimerCountDoun = _ignoreGroundLayerDelayTime;
+            _reviewPosition = new GameObject("TempStartPos").transform;
         }
 
         public void CleanUp()
