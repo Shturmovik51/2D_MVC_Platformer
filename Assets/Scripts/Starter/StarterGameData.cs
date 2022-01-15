@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Platformer2D
 {
@@ -23,6 +24,16 @@ namespace Platformer2D
         [SerializeField] private Transform _savePointsContainer;
         [SerializeField] private Transform _spawnersContainer;
 
+        [Header("MapGeneratorProperties")]
+        [SerializeField] private Tilemap _tilemap;
+        [SerializeField] private Tile _groundTile;
+        [SerializeField] private Tile _grassTile;
+        [SerializeField] private int _mapHeight;
+        [SerializeField] private int _mapWidth;
+        [SerializeField] private bool _borders;
+        [SerializeField] [Range(0, 100)] private int _fillPercent;
+        [SerializeField] [Range(0, 100)] private int _factorSmooth;
+            
         public float AnimationSpeed { get => _animationSpeed; set => _animationSpeed = value; }
         public int ZombiesCountInCollection => _zombiesCountInPool;
         public PlayerView PlayerView => _playerView;
@@ -36,5 +47,13 @@ namespace Platformer2D
         public int HitEffectsCountInPool => _hitEffectsCountInPool;
         public float BulletShellLifeTime => _bulletShellLifeTime;
         public float HitEffectLifeTime => _hitEffectLifeTime;
+        public Tilemap Tilemap => _tilemap;
+        public Tile GroundTile => _groundTile;
+        public Tile GrassTile => _grassTile;
+        public int MapHeight => _mapHeight;
+        public int MapWidth => _mapWidth;
+        public bool Borders => _borders;
+        public int FillPercent => _fillPercent;
+        public int FactorSmooth => _factorSmooth;
     }
 }

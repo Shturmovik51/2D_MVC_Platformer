@@ -27,6 +27,9 @@ namespace Platformer2D
             var enemiesController = new EnemiesController(enemiesPoolController, animatorController, starterGameData);
             var healthBarPoolController = new HealthBarPoolController(healthBarsInitializator, enemiesController);
 
+            var generatorLevelView = new GeneratorLevelView(starterGameData);
+            var generatorController = new GeneratorController(generatorLevelView);
+
             new HitableObjectsInitialisator(barrelsInitialisator, barrelsController, enemiesInitialisator, enemiesController, hitController);
             new EnemiesSpawnerInitialisator(starterGameData, enemiesPoolController, healthBarPoolController, controllersManager);
 
@@ -41,6 +44,7 @@ namespace Platformer2D
             controllersManager.Add(hitController);
             controllersManager.Add(enemiesController);
             controllersManager.Add(healthBarPoolController);
+            controllersManager.Add(generatorController);
         }
     }
 }

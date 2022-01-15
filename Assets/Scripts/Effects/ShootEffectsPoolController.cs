@@ -43,11 +43,9 @@ namespace Platformer2D
 
         private IEnumerator EffectLifeTime(float time, GameObject effect, List<GameObject> effectPool)
         {
-            Debug.Log("1");
             yield return new WaitForSeconds(time);
             effect.SetActive(false);
             effectPool.Add(effect);
-            Debug.Log("2");
             yield break;
         }
 
