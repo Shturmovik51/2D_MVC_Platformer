@@ -4,7 +4,8 @@ namespace Platformer2D
 {
     public sealed class GameInitializator
     {
-        public GameInitializator(ControllersManager controllersManager, GameData gameData, StarterGameData starterGameData, GameStarter gameStarter)
+        public GameInitializator(ControllersManager controllersManager, GameData gameData, StarterGameData starterGameData, GameStarter gameStarter,
+                                    QuestsData questsData)
         {
             var camera = Camera.main;
             var inputController = new InputController(gameData);
@@ -29,6 +30,10 @@ namespace Platformer2D
 
             var generatorLevelView = new GeneratorLevelView(starterGameData);
             var generatorController = new GeneratorController(generatorLevelView);
+
+            var model = new QuestModelSaveZone();
+            var quest = new QuestController(questsData, model);
+            quest.Reset();
 
             new HitableObjectsInitialisator(barrelsInitialisator, barrelsController, enemiesInitialisator, enemiesController, hitController);
             new EnemiesSpawnerInitialisator(starterGameData, enemiesPoolController, healthBarPoolController, controllersManager);

@@ -6,6 +6,8 @@ namespace Platformer2D
     {
         [SerializeField] private StarterGameData _starterGameData;
 
+        [SerializeField] private QuestsData _questsData;
+
         private ControllersManager _controllersManager;
         private GameData _gameData;
 
@@ -14,9 +16,9 @@ namespace Platformer2D
             _controllersManager = new ControllersManager();
             _gameData = (GameData) Resources.Load("GameData");
 
-            new GameInitializator(_controllersManager, _gameData, _starterGameData, this);
+            new GameInitializator(_controllersManager, _gameData, _starterGameData, this, _questsData);
 
-            _controllersManager.Initialization();
+            _controllersManager.Initialization(); 
         }
 
         private void Update()

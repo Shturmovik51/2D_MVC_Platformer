@@ -20,7 +20,8 @@ namespace Platformer2D
         private float _delayTime = 0.1f;
         private float _timer;
         private int _shootForse = 5;
-        private float _shootDistance = 11;
+        private int _bulletShellDropForce = 3;
+        private float _shootDistance = 12;
         public ShootController(InputController inputController, SpriteAnimatorController animatorController, StarterGameData starterGameData,
                     ArmController armController, ShootEffectsPoolController shootEffectsPoolController)
         {
@@ -73,9 +74,9 @@ namespace Platformer2D
             bulletShellRigidbody.AddTorque(UnityEngine.Random.Range(-5,5));
 
             if (_playerView.localScale.x > 0)
-                bulletShellRigidbody.AddForce((bulletShell.transform.up * 3 - bulletShell.transform.right), ForceMode2D.Impulse);
+                bulletShellRigidbody.AddForce((bulletShell.transform.up * _bulletShellDropForce - bulletShell.transform.right), ForceMode2D.Impulse);
             if (_playerView.localScale.x < 0)
-                bulletShellRigidbody.AddForce((bulletShell.transform.up * 3 + bulletShell.transform.right), ForceMode2D.Impulse);
+                bulletShellRigidbody.AddForce((bulletShell.transform.up * _bulletShellDropForce + bulletShell.transform.right), ForceMode2D.Impulse);
 
             var collider = Physics2D.Raycast(_shootRayStartPosition.position, _shootRayStartPosition.right, _shootDistance, _layerMask).collider;
 
