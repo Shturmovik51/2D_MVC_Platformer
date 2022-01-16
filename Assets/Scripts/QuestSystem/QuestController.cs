@@ -15,7 +15,6 @@ namespace Platformer2D
         private QuestObjectView _saveZoneQuestView;
         private KillsQuestView _killsQuestView;
         private bool _active;
-        private IQuestModel _model;
         private QuestsData _questsData;
         private KillsMonitorController _killsMonitorController;
 
@@ -38,7 +37,7 @@ namespace Platformer2D
 
         private void OnKill(object sender, int count)
         {
-            var killsQuestModel = _questModels.Find(model => model is QuestModelKills);
+            var killsQuestModel = _questModels.Find(model => model is KillsQuestModel);
             bool complete = killsQuestModel.TryComplete(count);
 
             if (complete)
@@ -49,7 +48,7 @@ namespace Platformer2D
 
         private void OnContact(PlayerView arg)
         {
-            var SaveZoneQuestModel = _questModels.Find(model => model is QuestModelSaveZone);
+            var SaveZoneQuestModel = _questModels.Find(model => model is SaveZoneQuestModel);
             bool complete = SaveZoneQuestModel.TryComplete(arg.gameObject);
 
             if (complete)

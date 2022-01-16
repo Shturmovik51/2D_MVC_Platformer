@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Platformer2D
 {
-    public class QuestModelKills : IQuestModel
+    public class KillsQuestModel : IQuestModel
     {
         public bool TryComplete<T>(T parameter)
         {

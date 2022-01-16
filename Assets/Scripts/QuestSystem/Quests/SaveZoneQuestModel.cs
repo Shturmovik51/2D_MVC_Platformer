@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Platformer2D
 {
-    public class QuestModelSaveZone : IQuestModel
+    public class SaveZoneQuestModel : IQuestModel
     {
         private const string Tag = "Player";
 

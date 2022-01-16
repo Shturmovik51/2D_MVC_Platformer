@@ -9,8 +9,8 @@ namespace Platformer2D
         {
             _questModels = new List<IQuestModel>()
             {
-                new QuestModelSaveZone(),
-                new QuestModelKills(),
+                new SaveZoneQuestModel(),
+                new KillsQuestModel(),
             };            
         }
 

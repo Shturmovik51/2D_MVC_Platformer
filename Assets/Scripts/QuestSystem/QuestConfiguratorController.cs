@@ -9,7 +9,7 @@ namespace Platformer2D
     {
         private QuestObjectView _singleQuestView;
         private QuestController _singleQuest;
-        private QuestModelSaveZone _model;
+        private SaveZoneQuestModel _model;
 
         private QuestStoryConfig[] _questStoryConfigs;
         private QuestObjectView[] _questObjects;
@@ -19,7 +19,7 @@ namespace Platformer2D
         public QuestConfiguratorController(QuestView questView)
         {
             _singleQuestView = questView._singleQuest;
-            _model = new QuestModelSaveZone();
+            _model = new SaveZoneQuestModel();
 
             _questStoryConfigs = questView._questStoryConfig;
             _questObjects = questView._questObjects;
@@ -40,7 +40,7 @@ namespace Platformer2D
 
             _questStoryFactories.Add(QuestStoryType.Common, questCollection => new QuestStoryController(questCollection));
 
-            _questFactories.Add(QuestType.SaveZones, () => new QuestModelSaveZone());
+            _questFactories.Add(QuestType.SaveZones, () => new SaveZoneQuestModel());
 
             _questStories = new List<IQuestStory>();
 
