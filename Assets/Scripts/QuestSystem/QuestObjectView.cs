@@ -31,9 +31,9 @@ namespace Platformer2D
             _defaultColor = _spriteRenderer.color;
         }
 
-        public void ProcessComplete()
+        public void ProcessComplete(QuestsData questsData)
         {
-            _saveZoneQuestPanel.color = _completedColor;
+            _saveZoneQuestPanel.color = questsData.CompletedColor;
             _saveZoneQuestToggle.isOn = true;
         }
 

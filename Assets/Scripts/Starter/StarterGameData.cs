@@ -7,6 +7,7 @@ namespace Platformer2D
     public struct StarterGameData
     {
         [SerializeField] private float _animationSpeed;
+        [SerializeField] private int _killsToWin;
 
         [Header("PoolsSettings")]
         [SerializeField] private Transform _pools;
@@ -55,5 +56,6 @@ namespace Platformer2D
         public bool Borders => _borders;
         public int FillPercent => _fillPercent;
         public int FactorSmooth => _factorSmooth;
+        public int KillsToWin => _killsToWin;
     }
 }

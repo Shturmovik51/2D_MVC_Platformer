@@ -27,13 +27,13 @@ namespace Platformer2D
             var barrelsController = new BarrelsController(barrelsInitialisator); 
             var enemiesController = new EnemiesController(enemiesPoolController, animatorController, starterGameData);
             var healthBarPoolController = new HealthBarPoolController(healthBarsInitializator, enemiesController);
+            var killsMonitorController = new KillsMonitorController(enemiesController, starterGameData, questsData);
 
             var generatorLevelView = new GeneratorLevelView(starterGameData);
             var generatorController = new GeneratorController(generatorLevelView);
 
-            var model = new QuestModelSaveZone();
-            var quest = new QuestController(questsData, model);
-            quest.Reset();
+            var questModelsFactory = new QuestModelsFactory();
+            var questController = new QuestController(questsData, questModelsFactory, starterGameData, killsMonitorController);
 
             new HitableObjectsInitialisator(barrelsInitialisator, barrelsController, enemiesInitialisator, enemiesController, hitController);
             new EnemiesSpawnerInitialisator(starterGameData, enemiesPoolController, healthBarPoolController, controllersManager);
@@ -50,6 +50,8 @@ namespace Platformer2D
             controllersManager.Add(enemiesController);
             controllersManager.Add(healthBarPoolController);
             controllersManager.Add(generatorController);
+            controllersManager.Add(questController);
+            controllersManager.Add(killsMonitorController);
         }
     }
 }
