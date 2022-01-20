@@ -21494,7 +21494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.23, y: 0.5, z: -10}
+  m_LocalPosition: {x: 44.46, y: -1.47, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -27093,6 +27093,7 @@ MonoBehaviour:
     _borders: 1
     _fillPercent: 50
     _factorSmooth: 4
+    aaa: 0
   _questsData:
     _questObjectView: {fileID: 1117555930}
     _saveZoneQuestPanel: {fileID: 1591713423}
@@ -60607,7 +60608,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1511503639}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.09, y: -2.92, z: 0}
+  m_LocalPosition: {x: 46.55, y: -2.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 835613557}

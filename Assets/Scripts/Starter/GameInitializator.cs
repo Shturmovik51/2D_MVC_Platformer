@@ -19,7 +19,7 @@ namespace Platformer2D
             var armController = new ArmController(starterGameData, inputController);
             var flipController = new FlipController(armController, starterGameData, inputController);            
             var shootController = new ShootController(inputController, animatorController, starterGameData, armController, shootEffectsPoolController);
-            var hitController = new HitController(shootController);
+            var hitController = new HitController(shootController, shootEffectsPoolController);
             var barrelsInitialisator = new BarrelsInitialisator(starterGameData, hitController);
             var enemiesInitialisator = new EnemiesInitialisator(gameData, starterGameData);
             var healthBarsInitializator = new HealthBarsInitializator(starterGameData, gameData);

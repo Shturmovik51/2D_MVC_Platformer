@@ -34,6 +34,8 @@ namespace Platformer2D
         [SerializeField] private bool _borders;
         [SerializeField] [Range(0, 100)] private int _fillPercent;
         [SerializeField] [Range(0, 100)] private int _factorSmooth;
+
+        public int aaa;
             
         public float AnimationSpeed { get => _animationSpeed; set => _animationSpeed = value; }
         public int ZombiesCountInCollection => _zombiesCountInPool;

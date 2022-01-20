@@ -5,7 +5,7 @@ namespace Platformer2D
 {
     public class ShootController: IInitializable, ICleanable, IController, IUpdatable
     {
-        public event Action<Collider2D, int> OnHitSomeThing;
+        public event Action<RaycastHit2D, int, Transform> OnHitSomeThing;
 
         private InputController _inputController;
         private SpriteAnimatorController _animatorController;
@@ -78,10 +78,10 @@ namespace Platformer2D
             if (_playerView.localScale.x < 0)
                 bulletShellRigidbody.AddForce((bulletShell.transform.up * _bulletShellDropForce + bulletShell.transform.right), ForceMode2D.Impulse);
 
-            var collider = Physics2D.Raycast(_shootRayStartPosition.position, _shootRayStartPosition.right, _shootDistance, _layerMask).collider;
+            var hit = Physics2D.Raycast(_shootRayStartPosition.position, _shootRayStartPosition.right, _shootDistance, _layerMask);            
 
-            if(collider != null)
-                OnHitSomeThing?.Invoke(collider, _shootForse);
+            if(hit.collider != null)
+                OnHitSomeThing?.Invoke(hit, _shootForse, _shootRayStartPosition);
         }
     }
 }
