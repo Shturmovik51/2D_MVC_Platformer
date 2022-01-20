@@ -56,7 +56,7 @@ namespace Platformer2D
             enemy.view.InitHealthBar(healthBar);
             enemy.view.Transform.parent = null;
             enemy.view.Transform.position = _spawnPoint.position;
-            enemy.view.SpriteRenderer.sortingOrder = Random.Range(0, 11);
+            enemy.view.SpriteRenderer.sortingOrder = Random.Range(3, 11);   //todo хардкод
 
             if (_isLeftSpawn)
                 enemy.view.Transform.localScale = _leftDir;

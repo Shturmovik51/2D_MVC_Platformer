@@ -4,8 +4,8 @@ namespace Platformer2D
 {
     public sealed class GameInitializator
     {
-        public GameInitializator(ControllersManager controllersManager, GameData gameData, StarterGameData starterGameData, GameStarter gameStarter,
-                                    QuestsData questsData)
+        public GameInitializator(ControllersManager controllersManager, GameData gameData, StarterGameData starterGameData, 
+                                    GameStarter gameStarter, QuestsData questsData)
         {
             var camera = Camera.main;
             var inputController = new InputController(gameData);

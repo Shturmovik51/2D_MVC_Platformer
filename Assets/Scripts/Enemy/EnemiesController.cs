@@ -16,6 +16,7 @@ namespace Platformer2D
 
         private float _agroCheckTimer = 1;
         private float _agroCheckCounter;
+        private int _jumpForce = 10;
         private Vector3 _rightDir = new Vector3(1, 1, 1);
         private Vector3 _leftDir = new Vector3(-1, 1, 1);
 
@@ -179,20 +180,20 @@ namespace Platformer2D
                 if (_activeEnemiesModels[i].IsOnChasing)
                 {
                     if (_activeEnemiesViews[i].Transform.position.y < _playerTransform.position.y)
-                        AddJumpForce();
+                        AddJumpForce(i);
 
                 }
                 else
                 {
                     if (_activeEnemiesViews[i].Transform.position.y < _activeEnemiesModels[i].LeftPatrolBorder.position.y ||
                         _activeEnemiesViews[i].Transform.position.y < _activeEnemiesModels[i].RightPatrolBorder.position.y)
-                        AddJumpForce();
+                        AddJumpForce(i);
                 }
             } 
             
-            void AddJumpForce()
+            void AddJumpForce(int i)
             {
-                _activeEnemiesViews[i].Rigidbody.AddForce(500 * Time.fixedDeltaTime * Vector2.up, ForceMode2D.Impulse);
+                _activeEnemiesViews[i].Rigidbody.AddForce(_jumpForce * Vector2.up, ForceMode2D.Impulse);    //todo сделать проверку на ifJump
             }
         }
     }

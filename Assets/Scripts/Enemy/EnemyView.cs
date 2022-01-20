@@ -41,9 +41,9 @@ namespace Platformer2D
         public bool ObstacleDetector()
         {
             if (_transform.localScale.x > 0)
-                return (Physics2D.Raycast(transform.position, Vector2.right, 1, _jumpMask));
+                return (Physics2D.Raycast(transform.position, Vector2.right + Vector2.up, 1.5f, _jumpMask));
             else
-                return (Physics2D.Raycast(transform.position, Vector2.left, 1, _jumpMask));
+                return (Physics2D.Raycast(transform.position, Vector2.left + Vector2.up, 1.5f, _jumpMask));
         }
     }
 }

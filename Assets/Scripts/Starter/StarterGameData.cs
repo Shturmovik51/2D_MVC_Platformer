@@ -4,7 +4,7 @@ using UnityEngine.Tilemaps;
 namespace Platformer2D
 {
     [System.Serializable]
-    public struct StarterGameData
+    public class StarterGameData
     {
         [SerializeField] private float _animationSpeed;
         [SerializeField] private int _killsToWin;
@@ -34,9 +34,7 @@ namespace Platformer2D
         [SerializeField] private bool _borders;
         [SerializeField] [Range(0, 100)] private int _fillPercent;
         [SerializeField] [Range(0, 100)] private int _factorSmooth;
-
-        public int aaa;
-            
+                    
         public float AnimationSpeed { get => _animationSpeed; set => _animationSpeed = value; }
         public int ZombiesCountInCollection => _zombiesCountInPool;
         public PlayerView PlayerView => _playerView;

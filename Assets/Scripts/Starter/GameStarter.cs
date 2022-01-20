@@ -25,9 +25,6 @@ namespace Platformer2D
         {
             var deltaTime = Time.deltaTime;
             _controllersManager.LocalUpdate(deltaTime);
-
-
-            Debug.Log(_starterGameData.aaa);
         }
 
         private void LateUpdate()
