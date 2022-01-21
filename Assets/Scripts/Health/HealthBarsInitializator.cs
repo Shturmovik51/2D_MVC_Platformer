@@ -10,10 +10,11 @@ namespace Platformer2D
         public HealthBarsInitializator(StarterGameData starterGameData, GameData gameData)
         {
             _healthBars = new List<HealthBar>(starterGameData.ZombiesCountInCollection);
+
             var canvas = Object.FindObjectOfType<Canvas>();
             var healthBarContainer = new GameObject("HealthBars");
+            var healthBarFactory = new HealthBarFactory(gameData, canvas);
             healthBarContainer.transform.parent = canvas.transform;
-            var healthBarFactory = new HealthBarFactory(gameData);
 
             for (int i = 0; i < starterGameData.ZombiesCountInCollection; i++)
             {

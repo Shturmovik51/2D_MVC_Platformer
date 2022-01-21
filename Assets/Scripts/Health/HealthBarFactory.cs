@@ -8,15 +8,19 @@ namespace Platformer2D
         private GameObject _healthBarPrototype;
         private GameObject _healthBarObject;
         private Image _barImage;
+        private Canvas _canvas;
 
-        public HealthBarFactory(GameData gameData)
+        public HealthBarFactory(GameData gameData, Canvas canvas)
         {
             _healthBarPrototype = gameData.PrefabsData.HealthBarPrefab;
+            _canvas = canvas;
         }
 
         public HealthBar GetHealthBar()
         {
-            _healthBarObject = Object.Instantiate(_healthBarPrototype);
+            var canvas = Object.FindObjectOfType<Canvas>();
+
+            _healthBarObject = Object.Instantiate(_healthBarPrototype, canvas.transform);
             var images = _healthBarObject.GetComponentsInChildren<Image>();  
 
             for (int i = 0; i < images.Length; i++)
