@@ -24,3 +24,4 @@ MonoBehaviour:
     _healthBarPrefab: {fileID: 8042765340575056231, guid: 8cbee67a5564d0a4ca474b212257d182, type: 3}
     _hitEffectprefab: {fileID: 3627414604217563028, guid: d115bc026ab4b6345952bfd487a437cc, type: 3}
     _bulletShellPrefab: {fileID: 5839342887724167281, guid: d0d0be3bc0458344d8579e9f52d72091, type: 3}
+    _logPrototype: {fileID: 3487047350996079224, guid: 8ba5a8f12f8b23944a9478405ae350f7, type: 3}

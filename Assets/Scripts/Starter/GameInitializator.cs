@@ -38,6 +38,8 @@ namespace Platformer2D
             new HitableObjectsInitialisator(barrelsInitialisator, barrelsController, enemiesInitialisator, enemiesController, hitController);
             new EnemiesSpawnerInitialisator(starterGameData, enemiesPoolController, healthBarPoolController, controllersManager);
 
+            var logSpawner = Object.FindObjectOfType<LogSpawner>();
+
             controllersManager.Add(animatorController);
             controllersManager.Add(inputController);
             controllersManager.Add(playerController);
@@ -52,6 +54,7 @@ namespace Platformer2D
             controllersManager.Add(generatorController);
             controllersManager.Add(questController);
             controllersManager.Add(killsMonitorController);
+            controllersManager.Add(logSpawner);
         }
     }
 }
